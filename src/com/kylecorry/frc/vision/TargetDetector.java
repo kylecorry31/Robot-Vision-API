@@ -34,8 +34,6 @@ public class TargetDetector extends Detector<Target> {
 		List<Target> detections = new ArrayList<>();
 		for (MatOfPoint contour : contours) {
 			Rect boundary = Imgproc.boundingRect(contour);
-			double rawX = boundary.x + boundary.width / 2;
-			double rawY = boundary.y + boundary.height / 2;
 			double aspectRatio = (boundary.width / (double) boundary.height);
 			double aspectScore = Scorer.score(aspectRatio, targetSpecs.getWidth() / targetSpecs.getHeight());
 
@@ -45,7 +43,8 @@ public class TargetDetector extends Detector<Target> {
 
 			double confidence = Math.round((aspectScore + areaScore) / 2) / 100.0;
 
-			Target target = new Target(confidence, boundary.width, boundary.height, new Position(rawX, rawY));
+			Target target = new Target(confidence, boundary.width, boundary.height,
+					new Position(boundary.x, boundary.y));
 			detections.add(target);
 		}
 
