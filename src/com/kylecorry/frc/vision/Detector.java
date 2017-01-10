@@ -1,4 +1,4 @@
-package com.kylecorry.frc.camera;
+package com.kylecorry.frc.vision;
 
 import java.util.List;
 

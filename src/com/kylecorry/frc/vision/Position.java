@@ -1,4 +1,4 @@
-package com.kylecorry.frc.camera;
+package com.kylecorry.frc.vision;
 
 public class Position {
 	public double x, y;

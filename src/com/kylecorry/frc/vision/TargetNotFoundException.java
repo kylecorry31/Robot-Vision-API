@@ -1,4 +1,4 @@
-package com.kylecorry.frc.camera;
+package com.kylecorry.frc.vision;
 
 /**
  * Thrown if the camera was unable to locate the target.
