@@ -28,6 +28,10 @@ public class Target {
 		return position;
 	}
 
+	public Position getCenterPosition() {
+		return new Position(getPosition().x + getWidth() / 2.0, getPosition().y + getHeight() / 2.0);
+	}
+
 	public double computeDistance(int imageWidth, double targetActualWidth, double cameraViewAngle) {
 		double normalizedWidth;
 		normalizedWidth = 2 * getWidth() / imageWidth;
