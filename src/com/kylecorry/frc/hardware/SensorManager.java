@@ -6,9 +6,21 @@ import java.util.Map.Entry;
 
 public class SensorManager {
 
-	public static final int SENSOR_DELAY_FASTEST = 0, SENSOR_DELAY_NORMAL = 1, SENSOR_DELAY_SLOW = 2;
+	public static enum SensorDelay {
+		FASTEST(0), NORMAL(20), SLOW(200);
 
-	private int minDelay = SENSOR_DELAY_SLOW;
+		private final long delay;
+
+		SensorDelay(long millis) {
+			delay = millis;
+		}
+
+		public long getDelayMillis() {
+			return delay;
+		}
+	}
+
+	private SensorDelay minDelay = SensorDelay.SLOW;
 	private Map<SensorEventListener, Sensor> sensors;
 	private boolean running = false;
 	private Thread eventThread;
@@ -23,24 +35,13 @@ public class SensorManager {
 							.onSensorChanged(new SensorEvent(s, s.getDriver().read(), System.currentTimeMillis()));
 				}
 				try {
-					Thread.sleep(delayToMillis(minDelay));
+					Thread.sleep(minDelay.getDelayMillis());
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
 		});
 		eventThread.setDaemon(true);
-	}
-
-	private static long delayToMillis(int delay) {
-		switch (delay) {
-		case SENSOR_DELAY_SLOW:
-			return 200;
-		case SENSOR_DELAY_NORMAL:
-			return 20;
-		default:
-			return 0;
-		}
 	}
 
 	private static class InstanceHolder {
@@ -65,8 +66,9 @@ public class SensorManager {
 		}
 	}
 
-	public void registerListener(SensorEventListener listener, Sensor sensor, int delay) {
-		minDelay = Math.min(delay, minDelay);
+	public void registerListener(SensorEventListener listener, Sensor sensor, SensorDelay delay) {
+		if (delay.getDelayMillis() < minDelay.getDelayMillis())
+			minDelay = delay;
 		if (!running)
 			start();
 		sensors.put(listener, sensor);
