@@ -2,14 +2,15 @@ package com.kylecorry.frc.hardware;
 
 public class Sensor {
 
-	public static final int SENSOR_TYPE_ACCELEROMETER = 0, SENSOR_TYPE_ENCODER = 1, SENSOR_TYPE_POTENTIOMETER = 2,
-			SENSOR_TYPE_GYRO = 3;
+	public static enum SensorType {
+		ACCELEROMETER, ENCODER, POTENTIOMETER, GYROSCOPE
+	}
 
 	private String name;
-	private int sensorType;
+	private SensorType sensorType;
 	private SensorDriver driver;
 
-	Sensor(String name, int sensorType, SensorDriver driver) {
+	Sensor(String name, SensorType sensorType, SensorDriver driver) {
 		this.name = name;
 		this.sensorType = sensorType;
 		this.driver = driver;
@@ -19,7 +20,7 @@ public class Sensor {
 		return name;
 	}
 
-	public int getSensorType() {
+	public SensorType getSensorType() {
 		return sensorType;
 	}
 
@@ -30,7 +31,7 @@ public class Sensor {
 	public static class Builder {
 
 		private String name;
-		private int sensorType;
+		private SensorType sensorType;
 		private SensorDriver driver;
 
 		public Builder() {
@@ -42,7 +43,7 @@ public class Sensor {
 			return this;
 		}
 
-		public Builder setType(int type) {
+		public Builder setType(SensorType type) {
 			sensorType = type;
 			return this;
 		}
