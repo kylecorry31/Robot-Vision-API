@@ -39,7 +39,7 @@ public class Target {
 	}
 
 	public double computeAngle(int imageWidth, double cameraViewAngle) {
-		double aimingCoordinate = (getPosition().x / imageWidth) * 2 - 1;
+		double aimingCoordinate = (getCenterPosition().x / imageWidth) * 2 - 1;
 		return aimingCoordinate * cameraViewAngle / 2;
 	}
 
