@@ -2,10 +2,15 @@ package com.kylecorry.frc.vision;
 
 public class TargetGroup {
 	private Target first, second;
+	double confidence;
 
 	public TargetGroup(Target first, Target second) {
 		this.first = first;
 		this.second = second;
+	}
+
+	public double getIsTargetGroupProbability() {
+		return confidence;
 	}
 
 	public Target getFirstTarget() {

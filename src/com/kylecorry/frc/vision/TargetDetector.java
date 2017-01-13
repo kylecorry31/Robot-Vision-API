@@ -15,7 +15,7 @@ import org.opencv.imgproc.Imgproc;
 
 public class TargetDetector extends Detector<Target> {
 
-	private TargetSpecs targetSpecs;
+	TargetSpecs targetSpecs;
 
 	TargetDetector(TargetSpecs specs, Processor<Target> processor) {
 		this.targetSpecs = specs;
