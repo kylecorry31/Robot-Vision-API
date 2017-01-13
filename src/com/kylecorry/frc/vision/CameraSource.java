@@ -16,21 +16,28 @@ public class CameraSource {
 	private CvSink sink;
 	private Mat frame;
 	private Thread detectionThread;
+	private Detector<?> detector;
 
 	CameraSource(VideoCamera camera, Detector<?> detector) {
 		this.camera = camera;
-		detectionThread = new Thread(() -> {
+		this.detector = detector;
+	}
+
+	private Thread createDetectionThread() {
+		Thread t = new Thread(() -> {
 			while (!Thread.interrupted()) {
 				if (detector != null)
 					detector.receiveFrame(getPicture());
 			}
 		});
-		detectionThread.setDaemon(true);
+		t.setDaemon(true);
+		return t;
 	}
 
 	public void start() {
 		CameraServer.getInstance().addCamera(camera);
 		sink = CameraServer.getInstance().getVideo(camera);
+		detectionThread = createDetectionThread();
 		detectionThread.start();
 	}
 

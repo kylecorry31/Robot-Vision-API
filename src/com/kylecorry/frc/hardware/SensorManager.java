@@ -26,7 +26,10 @@ public class SensorManager {
 
 	private SensorManager() {
 		sensors = new HashMap<>();
-		eventThread = new Thread(() -> {
+	}
+	
+	private Thread createEventThread(){
+		Thread t = new Thread(() -> {
 			while (!Thread.interrupted()) {
 				for (Entry<SensorEventListener, Sensor> entry : sensors.entrySet()) {
 					Sensor s = entry.getValue();
@@ -40,7 +43,8 @@ public class SensorManager {
 				}
 			}
 		});
-		eventThread.setDaemon(true);
+		t.setDaemon(true);
+		return t;
 	}
 
 	private static class InstanceHolder {
@@ -52,6 +56,7 @@ public class SensorManager {
 	}
 
 	private void start() {
+		eventThread = createEventThread();
 		eventThread.start();
 	}
 
