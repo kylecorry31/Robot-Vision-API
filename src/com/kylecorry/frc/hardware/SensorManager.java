@@ -22,13 +22,12 @@ public class SensorManager {
 
 	private SensorDelay minDelay = SensorDelay.SLOW;
 	private Map<SensorEventListener, Sensor> sensors;
-	private boolean running = false;
 	private Thread eventThread;
 
 	private SensorManager() {
 		sensors = new HashMap<>();
 		eventThread = new Thread(() -> {
-			while (running) {
+			while (!Thread.interrupted()) {
 				for (Entry<SensorEventListener, Sensor> entry : sensors.entrySet()) {
 					Sensor s = entry.getValue();
 					entry.getKey()
@@ -53,23 +52,17 @@ public class SensorManager {
 	}
 
 	private void start() {
-		running = true;
 		eventThread.start();
 	}
 
 	private void stop() {
-		running = false;
-		try {
-			eventThread.wait(20);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		eventThread.interrupt();
 	}
 
 	public void registerListener(SensorEventListener listener, Sensor sensor, SensorDelay delay) {
 		if (delay.getDelayMillis() < minDelay.getDelayMillis())
 			minDelay = delay;
-		if (!running)
+		if (!eventThread.isAlive())
 			start();
 		sensors.put(listener, sensor);
 	}

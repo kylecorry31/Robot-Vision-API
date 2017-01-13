@@ -16,12 +16,11 @@ public class CameraSource {
 	private CvSink sink;
 	private Mat frame;
 	private Thread detectionThread;
-	private volatile boolean detecting = false;
 
 	CameraSource(VideoCamera camera, Detector<?> detector) {
 		this.camera = camera;
 		detectionThread = new Thread(() -> {
-			while (detecting) {
+			while (!Thread.interrupted()) {
 				if (detector != null)
 					detector.receiveFrame(getPicture());
 			}
@@ -32,7 +31,6 @@ public class CameraSource {
 	public void start() {
 		CameraServer.getInstance().addCamera(camera);
 		sink = CameraServer.getInstance().getVideo(camera);
-		detecting = true;
 		detectionThread.start();
 	}
 
@@ -45,12 +43,7 @@ public class CameraSource {
 	}
 
 	public void stop() {
-		detecting = false;
-		try {
-			detectionThread.join(15);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		detectionThread.interrupt();
 		sink = null;
 		CameraServer.getInstance().removeCamera(camera.getName());
 	}
