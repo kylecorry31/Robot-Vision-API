@@ -10,7 +10,9 @@ import edu.wpi.first.wpilibj.CameraServer;
 
 public class CameraSource {
 
-	public static final int USB_CAMERA = 0, HTTP_CAMERA = 1;
+	public static enum Type {
+		USB, HTTP
+	}
 
 	private VideoCamera camera;
 	private CvSink sink;
@@ -71,7 +73,7 @@ public class CameraSource {
 
 		private Detector<?> detector;
 
-		private int cameraType = USB_CAMERA;
+		private Type cameraType = Type.USB;
 		private int port = 0;
 		private String url = "";
 		private int fps = 15;
@@ -81,7 +83,7 @@ public class CameraSource {
 			this.detector = detector;
 		}
 
-		public Builder setType(int cameraType) {
+		public Builder setType(Type cameraType) {
 			this.cameraType = cameraType;
 			return this;
 		}
@@ -111,9 +113,10 @@ public class CameraSource {
 			VideoCamera camera;
 
 			switch (cameraType) {
-			case HTTP_CAMERA:
+			case HTTP:
 				camera = new HttpCamera("cam", url);
 				break;
+			case USB:
 			default:
 				camera = new UsbCamera("cam", port);
 			}
