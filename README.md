@@ -18,7 +18,7 @@ TargetGroupDetector pegDetector = new TargetGroupDetector.Builder()
 	.build();
     
 CameraSource camera = new CameraSource.Builder(pegDetector)
-    .setType(CameraSource.USB_CAMERA)
+    .setType(CameraSource.Type.USB)
     .build();
 ```
     
