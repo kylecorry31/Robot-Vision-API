@@ -45,6 +45,14 @@ public class TargetGroupDetector extends Detector<TargetGroup> {
 				groups.add(group);
 			}
 		}
+		groups.sort((a, b) -> {
+			if (b.getIsTargetGroupProbability() > a.getIsTargetGroupProbability()) {
+				return 1;
+			} else if (a.getIsTargetGroupProbability() > b.getIsTargetGroupProbability()) {
+				return -1;
+			}
+			return 0;
+		});
 		return groups;
 	}
 

@@ -47,7 +47,14 @@ public class TargetDetector extends Detector<Target> {
 					new Position(boundary.x, boundary.y));
 			detections.add(target);
 		}
-
+		detections.sort((a, b)->{
+			if(b.getIsTargetProbability() > a.getIsTargetProbability()){
+				return 1;
+			} else if (a.getIsTargetProbability() > b.getIsTargetProbability()){
+				return -1;
+			}
+			return 0;
+		});
 		return detections;
 	}
 
