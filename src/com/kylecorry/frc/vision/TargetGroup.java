@@ -4,11 +4,25 @@ public class TargetGroup {
 	private Target first, second;
 	double confidence;
 
+	/**
+	 * Create a TargetGroup consisting of the first and second target.
+	 * 
+	 * @param first
+	 *            The first target in the group.
+	 * @param second
+	 *            The second target in the group.
+	 */
 	public TargetGroup(Target first, Target second) {
 		this.first = first;
 		this.second = second;
 	}
 
+	/**
+	 * Get the probability that this is the specified target group from 0 to 1
+	 * inclusive.
+	 * 
+	 * @return The probability that this is the target group.
+	 */
 	public double getIsTargetGroupProbability() {
 		return confidence;
 	}
