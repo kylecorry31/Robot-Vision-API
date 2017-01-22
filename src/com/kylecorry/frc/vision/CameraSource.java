@@ -42,7 +42,7 @@ public class CameraSource {
 	 * target detection processes.
 	 */
 	public void start() {
-		CameraServer.getInstance().addCamera(camera);
+		CameraServer.getInstance().startAutomaticCapture(camera);
 		sink = CameraServer.getInstance().getVideo(camera);
 		detectionThread = createDetectionThread();
 		detectionThread.start();
