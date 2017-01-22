@@ -7,6 +7,7 @@ import edu.wpi.cscore.HttpCamera;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoCamera;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 
 public class CameraSource {
 
@@ -55,8 +56,13 @@ public class CameraSource {
 	 */
 	public Mat getPicture() {
 		if (sink != null) {
-			sink.grabFrame(frame);
-			return frame;
+			long frameTime = sink.grabFrame(frame);
+			if (frameTime == 0) {
+				String error = sink.getError();
+				DriverStation.reportError(error, true);
+			} else {
+				return frame;
+			}
 		}
 		return null;
 	}
