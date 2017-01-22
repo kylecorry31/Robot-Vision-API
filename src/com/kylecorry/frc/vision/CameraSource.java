@@ -16,15 +16,14 @@ public class CameraSource {
 	}
 
 	private VideoCamera camera;
-	private CvSink sink;
-	private Mat frame;
+	private CvSink sink = new CvSink("CameraSource CvSink");
+	private Mat frame = new Mat();
 	private Thread detectionThread;
 	private Detector<?> detector;
 
 	CameraSource(VideoCamera camera, Detector<?> detector) {
 		this.camera = camera;
 		this.detector = detector;
-		sink = new CvSink("CameraSource_" + camera.getName());
 		sink.setSource(camera);
 	}
 
