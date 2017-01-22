@@ -24,6 +24,8 @@ public class CameraSource {
 	CameraSource(VideoCamera camera, Detector<?> detector) {
 		this.camera = camera;
 		this.detector = detector;
+		sink = new CvSink("CameraSource_" + camera.getName());
+		sink.setSource(camera);
 	}
 
 	private Thread createDetectionThread() {
@@ -44,7 +46,6 @@ public class CameraSource {
 	 */
 	public void start() {
 		CameraServer.getInstance().startAutomaticCapture(camera);
-		sink = CameraServer.getInstance().getVideo(camera.getName());
 		detectionThread = createDetectionThread();
 		detectionThread.start();
 	}
@@ -55,16 +56,14 @@ public class CameraSource {
 	 * @return The current image from the camera.
 	 */
 	public Mat getPicture() {
-		if (sink != null) {
-			long frameTime = sink.grabFrame(frame);
-			if (frameTime == 0) {
-				String error = sink.getError();
-				DriverStation.reportError(error, true);
-			} else {
-				return frame;
-			}
+		long frameTime = sink.grabFrame(frame);
+		if (frameTime == 0) {
+			String error = sink.getError();
+			DriverStation.reportError(error, true);
+			return null;
+		} else {
+			return frame;
 		}
-		return null;
 	}
 
 	/**
@@ -72,7 +71,6 @@ public class CameraSource {
 	 */
 	public void stop() {
 		detectionThread.interrupt();
-		sink = null;
 		CameraServer.getInstance().removeCamera(camera.getName());
 	}
 
