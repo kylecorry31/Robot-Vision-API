@@ -43,7 +43,7 @@ public class CameraSource {
 	 */
 	public void start() {
 		CameraServer.getInstance().startAutomaticCapture(camera);
-		sink = CameraServer.getInstance().getVideo(camera);
+		sink = CameraServer.getInstance().getVideo(camera.getName());
 		detectionThread = createDetectionThread();
 		detectionThread.start();
 	}
