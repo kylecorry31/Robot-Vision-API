@@ -16,7 +16,7 @@ public class CameraSource {
 	}
 
 	private VideoCamera camera;
-	private CvSink sink = new CvSink("CameraSource CvSink");
+	private CvSink sink;
 	private Mat frame = new Mat();
 	private Thread detectionThread;
 	private Detector<?> detector;
@@ -24,7 +24,6 @@ public class CameraSource {
 	CameraSource(VideoCamera camera, Detector<?> detector) {
 		this.camera = camera;
 		this.detector = detector;
-		sink.setSource(camera);
 	}
 
 	private Thread createDetectionThread() {
@@ -45,6 +44,7 @@ public class CameraSource {
 	 */
 	public void start() {
 		CameraServer.getInstance().startAutomaticCapture(camera);
+		sink = CameraServer.getInstance().getVideo(camera);
 		detectionThread = createDetectionThread();
 		detectionThread.start();
 	}
@@ -55,6 +55,8 @@ public class CameraSource {
 	 * @return The current image from the camera.
 	 */
 	public Mat getPicture() {
+		if (sink == null)
+			return frame;
 		long frameTime = sink.grabFrame(frame);
 		if (frameTime == 0) {
 			String error = sink.getError();
