@@ -60,9 +60,7 @@ public class TargetGroup {
 	}
 
 	public double computeDistance(int imageWidth, double targetActualWidth, double cameraViewAngle) {
-		double normalizedWidth;
-		normalizedWidth = 2 * getWidth() / imageWidth;
-		return targetActualWidth / (normalizedWidth * Math.tan(Math.toRadians(cameraViewAngle / 2)));
+		return targetActualWidth * imageWidth / (2 * getWidth() * Math.tan(Math.toRadians(cameraViewAngle / 2.0)));
 	}
 
 	public double computeAngle(int imageWidth, double cameraViewAngle) {
