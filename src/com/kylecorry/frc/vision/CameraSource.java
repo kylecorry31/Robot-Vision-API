@@ -69,7 +69,8 @@ public class CameraSource {
 	 * Stop the camera from streaming and detecting targets.
 	 */
 	public void stop() {
-		detectionThread.interrupt();
+		if (detectionThread != null)
+			detectionThread.interrupt();
 		CameraServer.getInstance().removeCamera(camera.getName());
 	}
 
