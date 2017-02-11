@@ -1,5 +1,7 @@
 package com.kylecorry.frc.vision;
 
+import com.kylecorry.geometry.Point;
+
 public class TargetGroup {
 	private Target first, second;
 	double confidence;
@@ -49,14 +51,14 @@ public class TargetGroup {
 		return maxBottom - minTop;
 	}
 
-	public Position getPosition() {
+	public Point getPosition() {
 		double minLeft = Math.min(first.getPosition().x, second.getPosition().x);
 		double minTop = Math.min(first.getPosition().y, second.getPosition().y);
-		return new Position(minLeft, minTop);
+		return new Point(minLeft, minTop, 0);
 	}
 
-	public Position getCenterPosition() {
-		return new Position(getPosition().x + getWidth() / 2.0, getPosition().y + getHeight() / 2.0);
+	public Point getCenterPosition() {
+		return new Point(getPosition().x + getWidth() / 2.0, getPosition().y + getHeight() / 2.0, 0);
 	}
 
 	public double computeDistance(int imageWidth, double targetActualWidth, double cameraViewAngle) {

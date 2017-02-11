@@ -13,6 +13,8 @@ import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
+import com.kylecorry.geometry.Point;
+
 public class TargetDetector extends Detector<Target> {
 
 	TargetSpecs targetSpecs;
@@ -44,7 +46,7 @@ public class TargetDetector extends Detector<Target> {
 			double confidence = Math.round((aspectScore + areaScore) / 2) / 100.0;
 
 			Target target = new Target(confidence, boundary.width, boundary.height,
-					new Position(boundary.x, boundary.y));
+					new Point(boundary.x, boundary.y, 0));
 			detections.add(target);
 		}
 		detections.sort((a, b)->{

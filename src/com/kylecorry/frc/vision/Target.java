@@ -1,11 +1,13 @@
 package com.kylecorry.frc.vision;
 
+import com.kylecorry.geometry.Point;
+
 public class Target {
 	private double confidence;
 	private double width, height;
-	private Position position;
+	private Point position;
 
-	Target(double confidence, double width, double height, Position position) {
+	Target(double confidence, double width, double height, Point position) {
 		this.confidence = confidence;
 		this.width = width;
 		this.height = height;
@@ -44,7 +46,7 @@ public class Target {
 	 * 
 	 * @return The target's top left point in pixels.
 	 */
-	public Position getPosition() {
+	public Point getPosition() {
 		return position;
 	}
 
@@ -53,8 +55,8 @@ public class Target {
 	 * 
 	 * @return The target's center point in pixels.
 	 */
-	public Position getCenterPosition() {
-		return new Position(getPosition().x + getWidth() / 2.0, getPosition().y + getHeight() / 2.0);
+	public Point getCenterPosition() {
+		return new Point(getPosition().x + getWidth() / 2.0, getPosition().y + getHeight() / 2.0, 0);
 	}
 
 	/**
