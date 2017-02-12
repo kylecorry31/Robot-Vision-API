@@ -142,6 +142,9 @@ public class CameraSource {
         camera.setExposureAuto();
     }
 
+    /**
+     * @deprecated This class was a bit confusing to use, instead use the constructors in {@link CameraSource} instead.
+     */
     @Deprecated
     public static class Builder {
 

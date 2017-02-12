@@ -83,6 +83,9 @@ public class TargetGroupDetector extends Detector<TargetGroup> {
         return groups;
     }
 
+    /**
+     * @deprecated This class was a bit confusing to use, instead use the constructors in {@link TargetGroupDetector} instead.
+     */
     @Deprecated
     public static class Builder {
         private TargetDetector detector;

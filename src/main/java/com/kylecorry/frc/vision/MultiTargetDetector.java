@@ -44,6 +44,9 @@ public class MultiTargetDetector extends Detector<Target> {
         return targets;
     }
 
+    /**
+     * @deprecated This class was a bit confusing to use, instead use the constructors in {@link MultiTargetDetector} instead.
+     */
     @Deprecated
     public static class Builder {
 

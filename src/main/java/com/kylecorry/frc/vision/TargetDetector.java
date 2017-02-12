@@ -81,6 +81,9 @@ public class TargetDetector extends Detector<Target> {
         return detections;
     }
 
+    /**
+     * @deprecated This class was a bit confusing to use, instead use the constructors in {@link TargetDetector} instead.
+     */
     @Deprecated
     public static class Builder {
         private TargetSpecs specs;
