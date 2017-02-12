@@ -23,7 +23,7 @@ public class CameraSource {
 
     public CameraSource(VideoCamera camera, Detector<?> detector) {
         this.camera = camera;
-        this.detector = detector;
+        setDetector(detector);
         sink.setSource(camera);
     }
 
@@ -67,6 +67,14 @@ public class CameraSource {
         } else {
             return frame;
         }
+    }
+
+    /**
+     * Set the detector of the camera.
+     * @param detector The detector.
+     */
+    public void setDetector(Detector<?> detector){
+        this.detector = detector;
     }
 
     /**
