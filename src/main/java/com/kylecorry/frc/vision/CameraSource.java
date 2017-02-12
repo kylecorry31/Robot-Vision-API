@@ -21,12 +21,23 @@ public class CameraSource {
     private Thread detectionThread;
     private Detector<?> detector;
 
+    /**
+     * Create a CameraSource from a {@link VideoCamera} with a {@link Detector} to process the images asynchronously.
+     *
+     * @param camera   The camera.
+     * @param detector The detector to process the images.
+     */
     public CameraSource(VideoCamera camera, Detector<?> detector) {
         this.camera = camera;
         setDetector(detector);
         sink.setSource(camera);
     }
 
+    /**
+     * Create a CameraSource from a {@link VideoCamera}.
+     *
+     * @param camera The camera.
+     */
     public CameraSource(VideoCamera camera) {
         this(camera, null);
     }
@@ -71,9 +82,10 @@ public class CameraSource {
 
     /**
      * Set the detector of the camera.
+     *
      * @param detector The detector.
      */
-    public void setDetector(Detector<?> detector){
+    public void setDetector(Detector<?> detector) {
         this.detector = detector;
     }
 
