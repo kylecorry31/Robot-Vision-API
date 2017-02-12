@@ -10,6 +10,13 @@ The CameraSource class is used to grab images from a camera and pass them to a d
 ### TargetDetector
 The TargetDetector class specializes in finding vision targets in an image given a target specification. 
 
+### Getting Started
+Download the jar file from the releases page (https://github.com/kylecorry31/Robot-Vision-API/releases), along with it's dependency jar from the Geometry API (https://github.com/kylecorry31/Geometry/releases/) and add them to your project in a libs folder. Add the libs folder to your build.properties file like so, at the end of the file: 
+
+    userLibs = libs
+    
+Then add both files to your Eclipse buildpath.
+
 ### Example
 ```Java
 CameraSource camera = new CameraSource(new UsbCamera("cam", 0));
