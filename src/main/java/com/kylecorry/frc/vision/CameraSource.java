@@ -21,10 +21,14 @@ public class CameraSource {
 	private Thread detectionThread;
 	private Detector<?> detector;
 
-	CameraSource(VideoCamera camera, Detector<?> detector) {
+	public CameraSource(VideoCamera camera, Detector<?> detector) {
 		this.camera = camera;
 		this.detector = detector;
 		sink.setSource(camera);
+	}
+
+	public CameraSource(VideoCamera camera){
+		this(camera, null);
 	}
 
 	private Thread createDetectionThread() {
