@@ -11,6 +11,7 @@ public class Examples {
         CameraSource camera = new CameraSource(new UsbCamera("cam", 0));
         camera.setExposure(0);
         camera.setBrightness(0);
+        camera.setResolution(640, 480);
         camera.start();
     }
 }
