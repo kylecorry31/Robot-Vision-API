@@ -16,6 +16,14 @@ public class TargetGroupDetector extends Detector<TargetGroup> {
 		setProcessor(processor);
 	}
 
+	public TargetGroupDetector(TargetSpecs targetSpecs, TargetGroupSpecs targetGroupSpecs, Processor<TargetGroup> processor){
+	    this(new TargetDetector(targetSpecs), targetGroupSpecs, processor);
+    }
+
+    public TargetGroupDetector(TargetSpecs targetSpecs, TargetGroupSpecs targetGroupSpecs){
+	    this(targetSpecs, targetGroupSpecs, null);
+    }
+
 	@Override
 	public List<TargetGroup> detect(Mat frame) {
 		List<TargetGroup> groups = new ArrayList<>();
@@ -56,6 +64,7 @@ public class TargetGroupDetector extends Detector<TargetGroup> {
 		return groups;
 	}
 
+	@Deprecated
 	public static class Builder {
 		private TargetDetector detector;
 		private Processor<TargetGroup> processor;
