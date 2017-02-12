@@ -1,6 +1,7 @@
 package com.kylecorry.frc.vision;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.opencv.core.Mat;
@@ -9,9 +10,13 @@ public class MultiTargetDetector extends Detector<Target> {
 
 	private List<Detector<? extends Target>> detectors;
 
-	MultiTargetDetector(List<Detector<? extends Target>> detectors) {
+	public MultiTargetDetector(List<Detector<? extends Target>> detectors) {
 		this.detectors = detectors;
 	}
+
+	public MultiTargetDetector(Detector<? extends Target>... detectors){
+	    this(Arrays.asList(detectors));
+    }
 
 	@Override
 	public List<Target> detect(Mat frame) {
@@ -22,6 +27,7 @@ public class MultiTargetDetector extends Detector<Target> {
 		return targets;
 	}
 
+	@Deprecated
 	public static class Builder {
 
 		private List<Detector<? extends Target>> detectors;
