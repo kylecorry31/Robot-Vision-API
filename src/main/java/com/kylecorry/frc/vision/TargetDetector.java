@@ -19,10 +19,14 @@ public class TargetDetector extends Detector<Target> {
 
 	TargetSpecs targetSpecs;
 
-	TargetDetector(TargetSpecs specs, Processor<Target> processor) {
+	public TargetDetector(TargetSpecs specs, Processor<Target> processor) {
 		this.targetSpecs = specs;
 		setProcessor(processor);
 	}
+
+	public TargetDetector(TargetSpecs specs){
+	    this(specs, null);
+    }
 
 	@Override
 	public List<Target> detect(Mat frame) {
