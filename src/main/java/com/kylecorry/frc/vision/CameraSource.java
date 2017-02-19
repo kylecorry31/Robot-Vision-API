@@ -9,9 +9,10 @@ import edu.wpi.cscore.VideoCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 
-public class CameraSource {
+public class CameraSource implements CameraSourceInterface {
 
-    public static enum Type {
+    @Deprecated
+    public enum Type {
         USB, HTTP
     }
 
@@ -53,22 +54,12 @@ public class CameraSource {
         return t;
     }
 
-    /**
-     * Start the camera and target detection. A call to this method will start
-     * the steam of the camera images to the Camera Server and will begin the
-     * target detection processes.
-     */
     public void start() {
         CameraServer.getInstance().startAutomaticCapture(camera);
         detectionThread = createDetectionThread();
         detectionThread.start();
     }
 
-    /**
-     * Get the current image from the camera.
-     *
-     * @return The current image from the camera.
-     */
     public Mat getPicture() {
         long frameTime = sink.grabFrame(frame);
         if (frameTime == 0) {
@@ -89,55 +80,28 @@ public class CameraSource {
         this.detector = detector;
     }
 
-    /**
-     * Stop the camera from streaming and detecting targets.
-     */
     public void stop() {
         if (detectionThread != null)
             detectionThread.interrupt();
         CameraServer.getInstance().removeCamera(camera.getName());
     }
 
-    /**
-     * Set the brightness of the camera from 0 to 100 inclusive.
-     *
-     * @param brightness The brightness of the camera.
-     */
     public void setBrightness(int brightness) {
         camera.setBrightness(brightness);
     }
 
-    /**
-     * Set the exposure of the camera from 0 to 100 inclusive.
-     *
-     * @param exposure The exposure of the camera.
-     */
     public void setExposure(int exposure) {
         camera.setExposureManual(exposure);
     }
 
-    /**
-     * Set the resolution of the camera.
-     *
-     * @param width  The width of the image.
-     * @param height The height of the image.
-     */
     public void setResolution(int width, int height) {
         camera.setResolution(width, height);
     }
 
-    /**
-     * Set the FPS of the camera.
-     *
-     * @param fps The FPS of the camera.
-     */
     public void setFPS(int fps) {
         camera.setFPS(fps);
     }
-
-    /**
-     * Allow the camera to choose its own exposure automatically.
-     */
+    
     public void setExposureAuto() {
         camera.setExposureAuto();
     }
