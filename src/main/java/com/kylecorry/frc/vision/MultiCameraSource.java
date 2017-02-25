@@ -1,6 +1,7 @@
 package com.kylecorry.frc.vision;
 
 import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.VideoCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -19,6 +20,7 @@ public class MultiCameraSource implements CameraSourceInterface {
     public static final String DEFAULT = "default";
     private CvSink cvSink;
     private VideoCamera currentCamera;
+    private MjpegServer server;
     private Mat frame = new Mat();
 
     /**
@@ -36,7 +38,8 @@ public class MultiCameraSource implements CameraSourceInterface {
      * Create a MultiCameraSource with no cameras by default.
      */
     public MultiCameraSource() {
-        cvSink = new CvSink("MultiCameraSource");
+        cvSink = new CvSink("opencv_multicamerasource");
+        server = new MjpegServer("server_multicamerasource", 1181);
         cameras = new HashMap<>();
     }
 
@@ -59,6 +62,7 @@ public class MultiCameraSource implements CameraSourceInterface {
         if (cameras.containsKey(name)) {
             currentCamera = cameras.get(name);
             cvSink.setSource(currentCamera);
+            server.setSource(currentCamera);
         } else {
             throw new InvalidCameraException(name);
         }
@@ -78,12 +82,10 @@ public class MultiCameraSource implements CameraSourceInterface {
 
     @Override
     public void start() {
-        CameraServer.getInstance().addServer(cvSink);
     }
 
     @Override
     public void stop() {
-        CameraServer.getInstance().removeServer(cvSink.getName());
     }
 
     @Override
