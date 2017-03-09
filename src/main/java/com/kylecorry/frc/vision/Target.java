@@ -73,15 +73,17 @@ public class Target {
     }
 
     /**
-     * Compute the angle to the target from the center of the camera. Where left of the center is negative and right of the center is positive.
+     * Compute the angle to the target from the center of the camera. This returns angle to the target from the coordinate frame placed on the camera.
+     * So 0 is directly to the right of the camera, 180 is directly to the left, and 90 is directly ahead.
+     * To convert it to allow for the left of center to be negative, and right of center to be positive subtract this angle from 90.
      *
-     * @param imageWidth      The width of the full image.
+     * @param imageWidth      The width of the image in pixels.
      * @param cameraViewAngle The view angle of the camera in degrees.
-     * @return The angle to the target in degrees from the center of the camera.
+     * @return The angle to the target from the coordinate frame centered on the camera.
      */
     public double computeAngle(int imageWidth, double cameraViewAngle) {
         double aimingCoordinate = (getCenterPosition().x / imageWidth) * 2 - 1;
-        return aimingCoordinate * cameraViewAngle / 2;
+        return 90 - aimingCoordinate * cameraViewAngle / 2;
     }
 
 }
