@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'com.kylecorry.frc.vision'
-version '0.5'
+version '0.6'
 
 
 sourceCompatibility = 1.8
@@ -32,4 +32,8 @@ wpi {
     ntcoreVersion = "+"                   // The NetworkTables Core version to use.
     opencvVersion = "+"                   // The OpenCV version to use
     cscoreVersion = "+"                   // The CSCore version to use
+}
+
+jar {
+    from sourceSets.main.allSource
 }
