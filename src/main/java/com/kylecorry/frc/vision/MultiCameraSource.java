@@ -35,11 +35,34 @@ public class MultiCameraSource implements CameraSourceInterface {
     }
 
     /**
+     * Create a MultiCameraSource with a default camera.
+     *
+     * @param name          The name of the MultiCameraSource.
+     * @param port          The port the MultiCameraSource streams to.
+     * @param defaultCamera The default camera.
+     */
+    public MultiCameraSource(String name, int port, VideoCamera defaultCamera) {
+        this(name, port);
+        addCamera(defaultCamera, DEFAULT);
+        switchToCamera(DEFAULT);
+    }
+
+    /**
      * Create a MultiCameraSource with no cameras by default.
      */
     public MultiCameraSource() {
-        cvSink = new CvSink("opencv_multicamerasource");
-        server = new MjpegServer("server_multicamerasource", 1181);
+        this("multicamerasource", 1181);
+    }
+
+    /**
+     * Create a MultiCameraSource with no cameras by default.
+     *
+     * @param name The name of the MultiCameraSource.
+     * @param port The port the MultiCameraSource streams to.
+     */
+    public MultiCameraSource(String name, int port) {
+        cvSink = new CvSink("opencv_" + name);
+        server = new MjpegServer("server_" + name, port);
         cameras = new HashMap<>();
     }
 
