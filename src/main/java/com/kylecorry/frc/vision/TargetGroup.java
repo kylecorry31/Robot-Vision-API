@@ -92,13 +92,13 @@ public class TargetGroup {
     /**
      * Compute the distance to the target group.
      *
-     * @param imageWidth        The width of the image.
-     * @param targetActualWidth The width of the actual target.
-     * @param cameraViewAngle   The view angle of the camera in degrees.
+     * @param imageWidth             The width of the image.
+     * @param heightRelativeToCamera The height of the target relative to the camera (distance from camera to target along Y axis).
+     * @param focalLengthPixels      The focal length of the camera in pixels.
      * @return The distance to the target in the same units as the targetActualWidth.
      */
-    public double computeDistance(int imageWidth, double targetActualWidth, double cameraViewAngle) {
-        return targetActualWidth * imageWidth / (2 * getWidth() * Math.tan(Math.toRadians(cameraViewAngle / 2.0)));
+    public double computeDistance(int imageWidth, double heightRelativeToCamera, double focalLengthPixels) {
+        return focalLengthPixels * heightRelativeToCamera / (getCenterPosition().y - imageWidth / 2.0 + 0.5);
     }
 
     /**
@@ -111,7 +111,6 @@ public class TargetGroup {
      * @return The angle to the target from the coordinate frame centered on the camera.
      */
     public double computeAngle(int imageWidth, double cameraViewAngle) {
-        double aimingCoordinate = (getCenterPosition().x / imageWidth) * 2 - 1;
-        return 90 - aimingCoordinate * cameraViewAngle / 2;
+        return 90 - (getCenterPosition().x - imageWidth / 2.0 + 0.5) / (imageWidth / 2 * Math.tan(Math.toRadians(cameraViewAngle / 2.0)));
     }
 }
