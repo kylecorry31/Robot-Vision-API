@@ -94,11 +94,11 @@ public class TargetGroup {
      *
      * @param imageWidth             The width of the image.
      * @param heightRelativeToCamera The height of the target relative to the camera (distance from camera to target along Y axis).
-     * @param focalLengthPixels      The focal length of the camera in pixels.
+     * @param horizontalViewAngle      The horizontal view angle in degrees.
      * @return The distance to the target in the same units as the targetActualWidth.
      */
-    public double computeDistance(int imageWidth, double heightRelativeToCamera, double focalLengthPixels) {
-        return focalLengthPixels * heightRelativeToCamera / (getCenterPosition().y - imageWidth / 2.0 + 0.5);
+    public double computeDistance(int imageWidth, double heightRelativeToCamera, double horizontalViewAngle) {
+        return CameraSpecs.calculateFocalLengthPixels(imageWidth, horizontalViewAngle) * heightRelativeToCamera / (getCenterPosition().y - imageWidth / 2.0 + 0.5);
     }
 
     /**
@@ -107,10 +107,10 @@ public class TargetGroup {
      * To convert it to allow for the left of center to be negative, and right of center to be positive subtract this angle from 90.
      *
      * @param imageWidth      The width of the image in pixels.
-     * @param cameraViewAngle The view angle of the camera in degrees.
+     * @param horizontalViewAngle      The horizontal view angle in degrees.
      * @return The angle to the target from the coordinate frame centered on the camera.
      */
-    public double computeAngle(int imageWidth, double cameraViewAngle) {
-        return 90 - (getCenterPosition().x - imageWidth / 2.0 + 0.5) / (imageWidth / 2 * Math.tan(Math.toRadians(cameraViewAngle / 2.0)));
+    public double computeAngle(int imageWidth, double horizontalViewAngle) {
+        return 90 - Math.toDegrees(Math.atan((getCenterPosition().x - imageWidth / 2.0 + 0.5) / CameraSpecs.calculateFocalLengthPixels(imageWidth, horizontalViewAngle)));
     }
 }

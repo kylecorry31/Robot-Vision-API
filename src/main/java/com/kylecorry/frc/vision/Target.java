@@ -7,6 +7,14 @@ public class Target {
     private double width, height;
     private Point position;
 
+    /**
+     * Create a target.
+     *
+     * @param confidence The confidence that this is the real target from 0 to 1 inclusive.
+     * @param width      The width of the target in pixels.
+     * @param height     The height of the target in pixels.
+     * @param position   The top left position in pixels.
+     */
     Target(double confidence, double width, double height, Point position) {
         this.confidence = confidence;
         this.width = width;
@@ -60,28 +68,29 @@ public class Target {
     }
 
     /**
-     * Compute the distance to the target group.
+     * Compute the distance to the target.
      *
      * @param imageWidth             The width of the image.
+     * @param imageHeight            The height of the image.
      * @param heightRelativeToCamera The height of the target relative to the camera (distance from camera to target along Y axis).
-     * @param focalLengthPixels      The focal length of the camera in pixels.
+     * @param horizontalViewAngle    The horizontal view angle in degrees.
      * @return The distance to the target in the same units as the targetActualWidth.
      */
-    public double computeDistance(int imageWidth, double heightRelativeToCamera, double focalLengthPixels) {
-        return focalLengthPixels * heightRelativeToCamera / (getCenterPosition().y - imageWidth / 2.0 + 0.5);
+    public double computeDistance(int imageWidth, int imageHeight, double heightRelativeToCamera, double horizontalViewAngle) {
+        return CameraSpecs.calculateFocalLengthPixels(imageWidth, horizontalViewAngle) * heightRelativeToCamera / (getCenterPosition().y - imageHeight / 2.0 + 0.5);
     }
 
     /**
-     * Compute the angle to the target group from the center of the camera. This returns angle to the target from the coordinate frame placed on the camera.
+     * Compute the angle to the target from the center of the camera. This returns angle to the target from the coordinate frame placed on the camera.
      * So 0 is directly to the right of the camera, 180 is directly to the left, and 90 is directly ahead.
      * To convert it to allow for the left of center to be negative, and right of center to be positive subtract this angle from 90.
      *
-     * @param imageWidth      The width of the image in pixels.
-     * @param cameraViewAngle The view angle of the camera in degrees.
+     * @param imageWidth          The width of the image in pixels.
+     * @param horizontalViewAngle The horizontal view angle in degrees.
      * @return The angle to the target from the coordinate frame centered on the camera.
      */
-    public double computeAngle(int imageWidth, double cameraViewAngle) {
-        return 90 - (getCenterPosition().x - imageWidth / 2.0 + 0.5) / (imageWidth / 2 * Math.tan(Math.toRadians(cameraViewAngle / 2.0)));
+    public double computeAngle(int imageWidth, double horizontalViewAngle) {
+        return 90 - Math.toDegrees(Math.atan((getCenterPosition().x - imageWidth / 2.0 + 0.5) / CameraSpecs.calculateFocalLengthPixels(imageWidth, horizontalViewAngle)));
     }
 
 }
