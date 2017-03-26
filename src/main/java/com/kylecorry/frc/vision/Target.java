@@ -68,7 +68,7 @@ public class Target {
     }
 
     /**
-     * Compute the distance to the target group.
+     * Compute the distance to the target.
      *
      * @param imageWidth             The width of the image.
      * @param heightRelativeToCamera The height of the target relative to the camera (distance from camera to target along Y axis).
@@ -80,7 +80,7 @@ public class Target {
     }
 
     /**
-     * Compute the angle to the target group from the center of the camera. This returns angle to the target from the coordinate frame placed on the camera.
+     * Compute the angle to the target from the center of the camera. This returns angle to the target from the coordinate frame placed on the camera.
      * So 0 is directly to the right of the camera, 180 is directly to the left, and 90 is directly ahead.
      * To convert it to allow for the left of center to be negative, and right of center to be positive subtract this angle from 90.
      *
