@@ -16,7 +16,7 @@ public class TargetTest {
         double angle = target.computeAngle(640, 60);
         assertEquals(116.3, angle, 0.1);
 
-        Target target2 = new Target(1, 10, 10, new Point(315, 200, 0));
+        Target target2 = new Target(1, 10, 10, new Point(315, 195, 0));
         angle = target2.computeAngle(640, 60);
         assertEquals(90, angle, 0.1);
     }
