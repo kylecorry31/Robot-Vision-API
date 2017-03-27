@@ -26,8 +26,8 @@ public class Examples {
         if(!targets.isEmpty()){
             TargetGroup bestTarget = targets.get(0);
 
-            double angle = bestTarget.computeAngle(160, CameraSpecs.MicrosoftLifeCam.HORIZONTAL_VIEW_ANGLE);
-            double distance = bestTarget.computeDistance(160, new ExampleGroupSpecs().getGroupWidth(), CameraSpecs.MicrosoftLifeCam.HORIZONTAL_VIEW_ANGLE);
+            double angle = bestTarget.computeAngle(CameraSpecs.MicrosoftLifeCam.HORIZONTAL_VIEW_ANGLE);
+            double distance = bestTarget.computeDistance(new ExampleGroupSpecs().getGroupWidth(), CameraSpecs.MicrosoftLifeCam.HORIZONTAL_VIEW_ANGLE);
 
             double centerX = bestTarget.getCenterPosition().x;
 
