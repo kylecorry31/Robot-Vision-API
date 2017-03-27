@@ -67,7 +67,7 @@ public class TargetDetector extends Detector<Target> {
             double confidence = Math.round((aspectScore + areaScore) / 2) / 100.0;
 
             Target target = new Target(confidence, boundary.width, boundary.height,
-                    new Point(boundary.x, boundary.y, 0));
+                    new Point(boundary.x, boundary.y, 0), frame.size());
             detections.add(target);
         }
         detections.sort((a, b) -> {
@@ -170,7 +170,7 @@ public class TargetDetector extends Detector<Target> {
         /**
          * This method is a generated setter for source0.
          *
-         * @param source the Mat to set
+         * @param source0 the Mat to set
          */
         public void setsource0(Mat source0) {
             this.source0 = source0;
@@ -216,11 +216,11 @@ public class TargetDetector extends Detector<Target> {
         /**
          * Segment an image based on hue, saturation, and value ranges.
          *
-         * @param input  The image on which to perform the HSL threshold.
-         * @param hue    The min and max hue
-         * @param sat    The min and max saturation
-         * @param val    The min and max value
-         * @param output The image in which to store the output.
+         * @param input The image on which to perform the HSL threshold.
+         * @param hue   The min and max hue
+         * @param sat   The min and max saturation
+         * @param val   The min and max value
+         * @param out   The image in which to store the output.
          */
         private void hsvThreshold(Mat input, double[] hue, double[] sat, double[] val, Mat out) {
             Imgproc.cvtColor(input, out, Imgproc.COLOR_BGR2HSV);
@@ -256,10 +256,7 @@ public class TargetDetector extends Detector<Target> {
          * Sets the values of pixels in a binary image to their distance to the
          * nearest black pixel.
          *
-         * @param input    The image on which to perform the Distance Transform.
-         * @param type     The Transform.
-         * @param maskSize the size of the mask.
-         * @param output   The image in which to store the output.
+         * @param input The image on which to perform the Distance Transform.
          */
         private void findContours(Mat input, boolean externalOnly, List<MatOfPoint> contours) {
             Mat hierarchy = new Mat();
@@ -285,7 +282,6 @@ public class TargetDetector extends Detector<Target> {
          * @param maxWidth       maximum width
          * @param minHeight      minimum height
          * @param maxHeight      maximimum height
-         * @param Solidity       the minimum and maximum solidity of a contour
          * @param minVertexCount minimum vertex Count of the contours
          * @param maxVertexCount maximum vertex Count
          * @param minRatio       minimum ratio of width to height
