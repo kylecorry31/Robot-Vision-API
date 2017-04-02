@@ -88,7 +88,7 @@ public class Target {
      *
      * @param heightRelativeToCamera The height of the target relative to the camera (distance from camera to target along Y axis).
      * @param horizontalViewAngle    The horizontal view angle in degrees.
-     * @return The distance to the target in the same units as the targetActualWidth.
+     * @return The distance to the target in the same units as the heightRelativeToCamera.
      */
     public double computeDistance(double heightRelativeToCamera, double horizontalViewAngle) {
         return -CameraSpecs.calculateFocalLengthPixels((int) imageSize.width, horizontalViewAngle) * heightRelativeToCamera / (getCenterPosition().y - imageSize.height / 2.0 + 0.5);
@@ -104,6 +104,20 @@ public class Target {
      */
     public double computeAngle(double horizontalViewAngle) {
         return 90 - Math.toDegrees(Math.atan((getCenterPosition().x - imageSize.width / 2.0 + 0.5) / CameraSpecs.calculateFocalLengthPixels((int) imageSize.width, horizontalViewAngle)));
+    }
+
+    /**
+     * Compute the coordinates of the target in 3D space.
+     *
+     * @param heightRelativeToCamera The height of the target relative to the camera (distance from camera to target along Y axis).
+     * @param horizontalViewAngle    The horizontal view angle in degrees.
+     * @return The coordinates of the target in the same units as the heightRelativeToCamera.
+     */
+    public Point computeCoordinates(double heightRelativeToCamera, double horizontalViewAngle) {
+        double distance = computeDistance(heightRelativeToCamera, horizontalViewAngle);
+        double x = distance * (getCenterPosition().x - imageSize.width / 2.0 + 0.5) / CameraSpecs.calculateFocalLengthPixels((int) imageSize.width, horizontalViewAngle);
+        double y = -distance * (getCenterPosition().y - imageSize.height / 2.0 + 0.5) / CameraSpecs.calculateFocalLengthPixels((int) imageSize.width, horizontalViewAngle);
+        return new Point(x, y, distance);
     }
 
 }
