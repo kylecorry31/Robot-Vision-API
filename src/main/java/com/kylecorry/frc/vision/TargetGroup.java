@@ -93,6 +93,16 @@ public class TargetGroup {
     }
 
     /**
+     * Get the center of mass of the target group in pixels.
+     *
+     * @return The center of mass in pixels.
+     */
+    public Point getCenterOfMass() {
+        return new Point((getFirstTarget().getCenterOfMass().x + getSecondTarget().getCenterOfMass().x) / 2.0,
+                (getFirstTarget().getCenterOfMass().y + getSecondTarget().getCenterOfMass().y) / 2.0, 0);
+    }
+
+    /**
      * Compute the distance to the target.
      *
      * @param heightRelativeToCamera The height of the target relative to the camera (distance from camera to target along Y axis).
@@ -100,7 +110,7 @@ public class TargetGroup {
      * @return The distance to the target in the same units as the targetActualWidth.
      */
     public double computeDistance(double heightRelativeToCamera, double horizontalViewAngle) {
-        return -CameraSpecs.calculateFocalLengthPixels((int) imageSize.width, horizontalViewAngle) * heightRelativeToCamera / (getCenterPosition().y - imageSize.height / 2.0 + 0.5);
+        return CameraSpecs.calculateFocalLengthPixels((int) imageSize.width, horizontalViewAngle) * heightRelativeToCamera / (getCenterPosition().y - imageSize.height / 2.0 + 0.5);
     }
 
     /**

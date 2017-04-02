@@ -1,19 +1,12 @@
 package com.kylecorry.frc.vision;
 
+import com.kylecorry.geometry.Point;
+import org.opencv.core.*;
+import org.opencv.imgproc.Imgproc;
+import org.opencv.imgproc.Moments;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import org.opencv.core.Core;
-import org.opencv.core.CvType;
-import org.opencv.core.Mat;
-import org.opencv.core.MatOfInt;
-import org.opencv.core.MatOfPoint;
-import org.opencv.core.MatOfPoint2f;
-import org.opencv.core.Rect;
-import org.opencv.core.Scalar;
-import org.opencv.imgproc.Imgproc;
-
-import com.kylecorry.geometry.Point;
 
 public class TargetDetector extends Detector<Target> {
 
@@ -66,8 +59,12 @@ public class TargetDetector extends Detector<Target> {
 
             double confidence = Math.round((aspectScore + areaScore) / 2) / 100.0;
 
+            Moments moments = Imgproc.moments(contour);
+
+            Point centerOfMass = new Point(moments.m10 / moments.m00, moments.m01 / moments.m00, 0);
+
             Target target = new Target(confidence, boundary.width, boundary.height,
-                    new Point(boundary.x, boundary.y, 0), frame.size());
+                    new Point(boundary.x, boundary.y, 0), centerOfMass, frame.size());
             detections.add(target);
         }
         detections.sort((a, b) -> {
