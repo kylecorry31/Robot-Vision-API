@@ -100,7 +100,7 @@ public class TargetGroup {
      * @return The distance to the target in the same units as the targetActualWidth.
      */
     public double computeDistance(double heightRelativeToCamera, double horizontalViewAngle) {
-        return CameraSpecs.calculateFocalLengthPixels((int) imageSize.width, horizontalViewAngle) * heightRelativeToCamera / (getCenterPosition().y - imageSize.height / 2.0 + 0.5);
+        return -CameraSpecs.calculateFocalLengthPixels((int) imageSize.width, horizontalViewAngle) * heightRelativeToCamera / (getCenterPosition().y - imageSize.height / 2.0 + 0.5);
     }
 
     /**
