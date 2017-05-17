@@ -1,4 +1,4 @@
-import com.kylecorry.frc.vision.TargetGroupSpecs;
+import com.kylecorry.frc.vision.detection.TargetGroupSpecs;
 
 /**
  * Created by Kyle on 3/6/2017.

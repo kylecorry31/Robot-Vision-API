@@ -1,4 +1,4 @@
-package com.kylecorry.frc.vision;
+package com.kylecorry.frc.vision.camera;
 
 public class CameraSpecs {
     public static class MicrosoftLifeCam {

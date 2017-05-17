@@ -1,4 +1,4 @@
-package com.kylecorry.frc.vision;
+package com.kylecorry.frc.vision.camera;
 
 import org.opencv.core.Mat;
 
@@ -15,14 +15,13 @@ public interface CameraSourceInterface {
     Mat getPicture();
 
     /**
-     * Start the camera and target detection. A call to this method will start
-     * the steam of the camera images to the Camera Server and will begin the
-     * target detection processes.
+     * Start the camera. A call to this method will start
+     * the steam of the camera images to the Camera Server.
      */
     void start();
 
     /**
-     * Stop the camera from streaming and detecting targets.
+     * Stop the camera from streaming.
      */
     void stop();
 

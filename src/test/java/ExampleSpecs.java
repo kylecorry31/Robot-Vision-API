@@ -1,4 +1,4 @@
-import com.kylecorry.frc.vision.TargetSpecs;
+import com.kylecorry.frc.vision.detection.TargetSpecs;
 import org.opencv.core.Range;
 
 /**

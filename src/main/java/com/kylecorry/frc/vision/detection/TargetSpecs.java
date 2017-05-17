@@ -1,4 +1,4 @@
-package com.kylecorry.frc.vision;
+package com.kylecorry.frc.vision.detection;
 
 import org.opencv.core.Range;
 

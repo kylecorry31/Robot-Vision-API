@@ -1,9 +1,9 @@
-package com.kylecorry.frc.vision;
+package com.kylecorry.frc.vision.camera;
 
+import com.kylecorry.frc.vision.Experimental;
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.VideoCamera;
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import org.opencv.core.Mat;
 

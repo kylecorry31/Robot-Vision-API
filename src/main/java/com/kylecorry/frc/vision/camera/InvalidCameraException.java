@@ -1,4 +1,4 @@
-package com.kylecorry.frc.vision;
+package com.kylecorry.frc.vision.camera;
 
 /**
  * Created by Kylec on 2/19/2017.
