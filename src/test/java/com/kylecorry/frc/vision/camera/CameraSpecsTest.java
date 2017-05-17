@@ -1,6 +1,5 @@
-package com.kylecorry.frc.vision;
+package com.kylecorry.frc.vision.camera;
 
-import com.kylecorry.frc.vision.camera.CameraSpecs;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -11,7 +10,7 @@ import static org.junit.Assert.*;
 public class CameraSpecsTest {
 
     @Test
-    public void testFocalLength(){
+    public void testFocalLength() {
         assertEquals(554.3, CameraSpecs.calculateFocalLengthPixels(640, 60), 0.1);
     }
 

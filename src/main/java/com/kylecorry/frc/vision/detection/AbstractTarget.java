@@ -41,13 +41,13 @@ abstract class AbstractTarget {
     public abstract Point getCenterOfMass();
 
     /**
-     * Get the probability that this is the specified target from 0 to 100
+     * Get the probability that this is the specified target from 0 to 1
      * inclusive.
      *
      * @return The probability that this is the target.
      */
     public double getProbability() {
-        return confidence * 100;
+        return confidence;
     }
 
     /**

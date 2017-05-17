@@ -2,7 +2,7 @@ package com.kylecorry.frc.vision.detection;
 
 public interface TargetGroupSpecs {
 
-	public static enum Alignment {
+	enum Alignment {
 		LEFT, TOP
 	}
 
