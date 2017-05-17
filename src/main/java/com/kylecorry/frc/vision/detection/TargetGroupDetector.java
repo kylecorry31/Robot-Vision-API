@@ -1,6 +1,7 @@
 package com.kylecorry.frc.vision.detection;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.opencv.core.Mat;
@@ -67,8 +68,7 @@ public class TargetGroupDetector extends Detector<TargetGroup> {
                 double s5 = TargetGroupScorer.targetHeightToGroupHeightScore(group,
                         targetDetector.targetSpecs.getHeight() / specs.getGroupHeight());
                 double sum = s1 + s2 + s3 + s4 + s5;
-                double confidence = sum / 5.0 / 100.0;
-                group.confidence = confidence;
+                group.confidence = sum / 5.0 / 100.0;
                 groups.add(group);
             }
         }

@@ -107,8 +107,8 @@ public class TargetDetector extends Detector<Target> {
         // Outputs
         private Mat hsvThresholdOutput = new Mat();
         private Mat cvErodeOutput = new Mat();
-        private ArrayList<MatOfPoint> findContoursOutput = new ArrayList<MatOfPoint>();
-        private ArrayList<MatOfPoint> filterContoursOutput = new ArrayList<MatOfPoint>();
+        private ArrayList<MatOfPoint> findContoursOutput = new ArrayList<>();
+        private ArrayList<MatOfPoint> filterContoursOutput = new ArrayList<>();
 
         // Sources
         private Mat source0;
@@ -291,8 +291,7 @@ public class TargetDetector extends Detector<Target> {
             final MatOfInt hull = new MatOfInt();
             output.clear();
             // operation
-            for (int i = 0; i < inputContours.size(); i++) {
-                final MatOfPoint contour = inputContours.get(i);
+            for (final MatOfPoint contour : inputContours) {
                 final Rect bb = Imgproc.boundingRect(contour);
                 if (bb.width < minWidth || bb.width > maxWidth)
                     continue;
