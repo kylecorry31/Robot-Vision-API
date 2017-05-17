@@ -68,9 +68,9 @@ public class TargetDetector extends Detector<Target> {
             detections.add(target);
         }
         detections.sort((a, b) -> {
-            if (b.getIsTargetProbability() > a.getIsTargetProbability()) {
+            if (b.getProbability() > a.getProbability()) {
                 return 1;
-            } else if (a.getIsTargetProbability() > b.getIsTargetProbability()) {
+            } else if (a.getProbability() > b.getProbability()) {
                 return -1;
             }
             return 0;

@@ -33,7 +33,7 @@ public class Examples {
 
             double centerX = bestTarget.getCenterPosition().x;
 
-            double confidence = bestTarget.getIsTargetGroupProbability(); // 0 - 1
+            double confidence = bestTarget.getProbability(); // 0 - 1
 
             if(confidence > 0.75){
                 // do something
