@@ -1,62 +1,63 @@
-package com.kylecorry.frc.vision.camera;
+package com.kylecorry.frc.vision.camera
 
-import org.opencv.core.Mat;
+import org.opencv.core.Mat
 
 /**
  * An interface to abstract away some of the features of cameras.
  */
-public interface CameraSourceInterface {
+interface CameraSourceInterface {
 
     /**
      * Get the current image from the camera.
-     *
+
      * @return The current image from the camera.
      */
-    Mat getPicture();
+    val picture: Mat
 
     /**
      * Start the camera. A call to this method will start
      * the steam of the camera images to the Camera Server.
      */
-    void start();
+    fun start()
 
     /**
      * Stop the camera from streaming.
      */
-    void stop();
+    fun stop()
 
     /**
      * Set the brightness of the camera from 0 to 100 inclusive.
-     *
+
      * @param brightness The brightness of the camera.
      */
-    void setBrightness(int brightness);
+    fun setBrightness(brightness: Int)
 
     /**
      * Set the exposure of the camera from 0 to 100 inclusive.
-     *
+
      * @param exposure The exposure of the camera.
      */
-    void setExposure(int exposure);
+    fun setExposure(exposure: Int)
 
 
     /**
      * Allow the camera to choose its own exposure automatically.
      */
-    void setExposureAuto();
+    fun setExposureAuto()
 
     /**
      * Set the resolution of the camera.
-     *
+
      * @param width  The width of the image.
+     * *
      * @param height The height of the image.
      */
-    void setResolution(int width, int height);
+    fun setResolution(width: Int, height: Int)
 
     /**
      * Set the FPS of the camera.
-     *
+
      * @param fps The FPS of the camera.
      */
-    void setFPS(int fps);
+    fun setFPS(fps: Int)
 }

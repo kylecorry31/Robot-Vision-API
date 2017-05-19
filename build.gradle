@@ -1,9 +1,22 @@
+buildscript {
+    ext.kotlin_version = '1.1.2-4'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
 plugins {
     id "java"
     id "eclipse"
     id "idea"
     id "jaci.openrio.gradle.GradleRIO" version "2017.1.5"
 }
+
+apply plugin: 'kotlin'
+
 
 group 'com.kylecorry.frc.vision'
 version '1.0'
@@ -25,6 +38,7 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     compile fileTree(dir: 'libs', include: '*.jar')
     compile wpilib()
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
 }
 
 wpi {
