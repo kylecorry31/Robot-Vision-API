@@ -1,5 +1,6 @@
 package com.kylecorry.frc.vision;
 
+import com.kylecorry.frc.vision.camera.CameraSpecs;
 import com.kylecorry.geometry.Point;
 import org.opencv.core.Size;
 

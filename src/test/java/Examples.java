@@ -1,7 +1,8 @@
 import com.kylecorry.frc.vision.*;
+import com.kylecorry.frc.vision.camera.CameraSource;
+import com.kylecorry.frc.vision.camera.CameraSpecs;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
-import org.junit.Test;
 
 import java.util.List;
 

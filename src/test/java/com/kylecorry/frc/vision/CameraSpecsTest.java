@@ -1,5 +1,6 @@
 package com.kylecorry.frc.vision;
 
+import com.kylecorry.frc.vision.camera.CameraSpecs;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
