@@ -21,15 +21,6 @@ public class MultiTargetDetector extends Detector<Target> {
     }
 
     /**
-     * Create a MultiTargetDetector to detect multiple types of targets in an image.
-     *
-     * @param detectors The detector for each target to identify.
-     */
-    public MultiTargetDetector(Detector<? extends Target>... detectors) {
-        this(Arrays.asList(detectors));
-    }
-
-    /**
      * Detect the targets in the image.
      *
      * @param frame The image to detect targets in.
@@ -42,28 +33,6 @@ public class MultiTargetDetector extends Detector<Target> {
             targets.addAll(detector.detect(frame));
         }
         return targets;
-    }
-
-    /**
-     * @deprecated This class was a bit confusing to use, instead use the constructors in {@link MultiTargetDetector} instead.
-     */
-    @Deprecated
-    public static class Builder {
-
-        private List<Detector<? extends Target>> detectors;
-
-        public Builder() {
-            detectors = new ArrayList<>();
-        }
-
-        public Builder add(Detector<? extends Target> detector) {
-            detectors.add(detector);
-            return this;
-        }
-
-        public MultiTargetDetector build() {
-            return new MultiTargetDetector(detectors);
-        }
     }
 
 }
