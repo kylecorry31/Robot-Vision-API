@@ -17,20 +17,6 @@ Download the jar file from the releases page (https://github.com/kylecorry31/Rob
     
 Then add both files to your Eclipse buildpath.
 
-### Example
-```Java
-CameraSource camera = new CameraSource(new UsbCamera("cam", 0));
-camera.setExposure(0);
-camera.setBrightness(0);
-camera.setResolution(640, 480);
-
-TargetDetector targetDetector = new TargetDetector(new ExampleSpecs(), (targets) -> {
-    // do something
-});
-camera.setDetector(targetDetector);
-
-camera.start();
-```
 
 ### Displaying the most probable target example
 ```Java
@@ -40,20 +26,22 @@ camera.setExposure(0);
 camera.setBrightness(0);
 camera.setResolution(640, 480);
 
-TargetGroupDetector pegDetector = new TargetGroupDetector(new PegSingleRetroreflectiveSpecs(), new PegGroupSpecs(), (targets) -> {
-    // Draw the most probable target on the output stream
-    if (!targets.isEmpty()) {
-        Mat image = camera.getPicture();
-        Rect boundary = new Rect((int) Math.round(targets.get(0).getPosition().x),
-            (int) Math.round(targets.get(0).getPosition().y),
-            (int) Math.round(targets.get(0).getWidth()),
-            (int) Math.round(targets.get(0).getHeight()));
-        Imgproc.rectangle(image, boundary.tl(), boundary.br(), new Scalar(0, 255, 0));
-        outputStream.putFrame(image);
-    }
-});
-
-camera.setDetector(pegDetector);
-
 camera.start();
+
+final int MIN_PIXEL_AREA = 200;
+
+PegDetector pegDetector = new PegDetector(new IndividualPegDetector(new BrightnessFilter(200, 255), MIN_PIXEL_AREA));
+
+Mat image = camera.getPicture();
+
+List<Targets> targets = pegDetector.detect(image);
+
+for(Target target: targets){
+    Rect boundary = new Rect((int) Math.round(target.getPosition().x),
+        (int) Math.round(target.getPosition().y),
+        (int) Math.round(target.getWidth()),
+        (int) Math.round(target.getHeight()));
+    Imgproc.rectangle(image, boundary.tl(), boundary.br(), new Scalar(0, 255, 0));
+    outputStream.putFrame(image);
+}
 ```
