@@ -1,4 +1,4 @@
-package com.kylecorry.frc.vision;
+package com.kylecorry.frc.vision.testUtils;
 
 public interface ISystemProperties {
 

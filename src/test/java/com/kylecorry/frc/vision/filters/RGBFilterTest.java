@@ -1,8 +1,8 @@
 package com.kylecorry.frc.vision.filters;
 
-import com.kylecorry.frc.vision.OpenCVImageUtils;
-import com.kylecorry.frc.vision.OpenCVManager;
-import com.kylecorry.frc.vision.SystemProperties;
+import com.kylecorry.frc.vision.testUtils.OpenCVImageUtils;
+import com.kylecorry.frc.vision.testUtils.OpenCVManager;
+import com.kylecorry.frc.vision.testUtils.SystemProperties;
 import org.junit.Before;
 import org.junit.Test;
 import org.opencv.core.CvType;

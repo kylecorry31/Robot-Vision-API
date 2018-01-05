@@ -14,6 +14,10 @@ public class BrightnessFilter implements TargetFilter {
         this.brightness = brightness;
     }
 
+    public BrightnessFilter(int minBrightness, int maxBrightness){
+        this.brightness = new Range(minBrightness, maxBrightness);
+    }
+
     @Override
     public Mat filter(Mat image) {
         Mat out = new Mat();

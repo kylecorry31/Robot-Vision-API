@@ -1,4 +1,4 @@
-package com.kylecorry.frc.vision;
+package com.kylecorry.frc.vision.targets;
 
 import com.kylecorry.frc.vision.camera.CameraSpecs;
 import com.kylecorry.geometry.Point;

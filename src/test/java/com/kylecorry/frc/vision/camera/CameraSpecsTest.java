@@ -1,4 +1,4 @@
-package com.kylecorry.frc.vision;
+package com.kylecorry.frc.vision.camera;
 
 import com.kylecorry.frc.vision.camera.CameraSpecs;
 import org.junit.Test;

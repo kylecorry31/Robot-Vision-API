@@ -1,10 +1,9 @@
-package com.kylecorry.frc.vision;
+package com.kylecorry.frc.vision.targets;
 
 import com.kylecorry.frc.vision.contourFilters.ContourFilter;
 import com.kylecorry.frc.vision.contourFilters.ConvexHullContourFilter;
 import com.kylecorry.frc.vision.contourFinders.ContourFinder;
 import com.kylecorry.frc.vision.contourFinders.StandardContourFinder;
-import com.kylecorry.frc.vision.filters.HSVFilter;
 import com.kylecorry.frc.vision.filters.TargetFilter;
 import com.kylecorry.geometry.Point;
 import org.opencv.core.*;
@@ -16,26 +15,20 @@ import java.util.List;
 
 public class TargetDetector extends Detector<Target> {
 
-    TargetSpecs targetSpecs;
+    protected TargetSpecs targetSpecs;
+    private TargetFilter filter;
+    private double minPixelArea;
 
-    /**
-     * Create a TargetDetector to find a single target.
-     *
-     * @param specs     The specifications of the target.
-     * @param processor The processor to handle the targets when detected.
-     */
-    public TargetDetector(TargetSpecs specs, Processor<Target> processor) {
-        this.targetSpecs = specs;
-        setProcessor(processor);
-    }
 
     /**
      * Create a TargetDetector to find a single target.
      *
      * @param specs The specifications of the target.
      */
-    public TargetDetector(TargetSpecs specs) {
-        this(specs, null);
+    public TargetDetector(TargetSpecs specs, TargetFilter filter, double minPixelArea) {
+        this.targetSpecs = specs;
+        this.filter = filter;
+        this.minPixelArea = minPixelArea;
     }
 
     /**
@@ -46,7 +39,6 @@ public class TargetDetector extends Detector<Target> {
      */
     @Override
     public List<Target> detect(Mat frame) {
-        TargetFilter filter = new HSVFilter(targetSpecs.getHue(), targetSpecs.getSaturation(), targetSpecs.getValue());
         Mat filtered = filter.filter(frame);
 
         ContourFinder contourFinder = new StandardContourFinder();
@@ -55,7 +47,7 @@ public class TargetDetector extends Detector<Target> {
 
         filtered.release();
 
-        ContourFilter contourFilter = new ConvexHullContourFilter(targetSpecs.getMinPixelArea(), 0, new Range(0, 1000), new Range(0, 1000), new Range(0, 100), new Range(0, 1000000), new Range(0, 1000));
+        ContourFilter contourFilter = new ConvexHullContourFilter(minPixelArea, 0, new Range(0, 1000), new Range(0, 1000), new Range(0, 100), new Range(0, 1000000), new Range(0, 1000));
         contours = contourFilter.filterContours(contours);
 
 
@@ -75,7 +67,7 @@ public class TargetDetector extends Detector<Target> {
 
             Point centerOfMass = new Point(moments.m10 / moments.m00, moments.m01 / moments.m00, 0);
 
-            Target target = new Target(confidence, boundary.width, boundary.height,
+            Target target = new Target(confidence, boundary.width - 1, boundary.height - 1,
                     new Point(boundary.x, boundary.y, 0), centerOfMass, frame.size());
             detections.add(target);
         }
@@ -88,30 +80,6 @@ public class TargetDetector extends Detector<Target> {
             return 0;
         });
         return detections;
-    }
-
-    /**
-     * @deprecated This class was a bit confusing to use, instead use the constructors in {@link TargetDetector} instead.
-     */
-    @Deprecated
-    public static class Builder {
-        private TargetSpecs specs;
-        private Processor<Target> processor;
-
-        public Builder setTargetSpecs(TargetSpecs specs) {
-            this.specs = specs;
-            return this;
-        }
-
-        public Builder setProcessor(Processor<Target> processor) {
-            this.processor = processor;
-            return this;
-        }
-
-        public TargetDetector build() {
-            return new TargetDetector(specs, processor);
-        }
-
     }
 
 }

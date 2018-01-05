@@ -1,7 +1,6 @@
-package com.kylecorry.frc.vision;
+package com.kylecorry.frc.vision.testUtils;
 
 import java.io.File;
-import java.net.URISyntaxException;
 
 /**
  * Created by Kylec on 5/14/2017.

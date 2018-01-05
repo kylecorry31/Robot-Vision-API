@@ -1,4 +1,4 @@
-package com.kylecorry.frc.vision;
+package com.kylecorry.frc.vision.targets;
 
 public interface TargetGroupSpecs {
 

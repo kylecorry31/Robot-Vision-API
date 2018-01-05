@@ -1,4 +1,4 @@
-package com.kylecorry.frc.vision;
+package com.kylecorry.frc.vision.targets;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,6 +1,6 @@
 package com.kylecorry.frc.vision.camera;
 
-import com.kylecorry.frc.vision.Detector;
+import com.kylecorry.frc.vision.targets.Detector;
 import org.opencv.core.Mat;
 
 import edu.wpi.cscore.CvSink;
@@ -37,21 +37,8 @@ public class CameraSource implements CameraSourceInterface {
         this(camera, null);
     }
 
-    private Thread createDetectionThread() {
-        Thread t = new Thread(() -> {
-            while (!Thread.interrupted()) {
-                if (detector != null)
-                    detector.receiveFrame(getPicture());
-            }
-        });
-        t.setDaemon(true);
-        return t;
-    }
-
     public void start() {
         CameraServer.getInstance().startAutomaticCapture(camera);
-        detectionThread = createDetectionThread();
-        detectionThread.start();
     }
 
     public Mat getPicture() {

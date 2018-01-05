@@ -1,4 +1,4 @@
-package com.kylecorry.frc.vision;
+package com.kylecorry.frc.vision.targets;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,31 +10,9 @@ public class TargetGroupDetector extends Detector<TargetGroup> {
     private TargetDetector targetDetector;
     private TargetGroupSpecs specs;
 
-    TargetGroupDetector(TargetDetector targetDetector, TargetGroupSpecs specs, Processor<TargetGroup> processor) {
+    public TargetGroupDetector(TargetDetector targetDetector, TargetGroupSpecs specs) {
         this.targetDetector = targetDetector;
         this.specs = specs;
-        setProcessor(processor);
-    }
-
-    /**
-     * Create a TargetGroupDetector to detect a target that is composed of smaller vision targets.
-     *
-     * @param targetSpecs      The specifications of a single vision target in the target group.
-     * @param targetGroupSpecs The specifications of a group of vision targets.
-     * @param processor        The processor to handle detected target groups.
-     */
-    public TargetGroupDetector(TargetSpecs targetSpecs, TargetGroupSpecs targetGroupSpecs, Processor<TargetGroup> processor) {
-        this(new TargetDetector(targetSpecs), targetGroupSpecs, processor);
-    }
-
-    /**
-     * Create a TargetGroupDetector to detect a target that is composed of smaller vision targets.
-     *
-     * @param targetSpecs      The specifications of a single vision target in the target group.
-     * @param targetGroupSpecs The specifications of a group of vision targets.
-     */
-    public TargetGroupDetector(TargetSpecs targetSpecs, TargetGroupSpecs targetGroupSpecs) {
-        this(targetSpecs, targetGroupSpecs, null);
     }
 
     /**
@@ -81,36 +59,6 @@ public class TargetGroupDetector extends Detector<TargetGroup> {
             return 0;
         });
         return groups;
-    }
-
-    /**
-     * @deprecated This class was a bit confusing to use, instead use the constructors in {@link TargetGroupDetector} instead.
-     */
-    @Deprecated
-    public static class Builder {
-        private TargetDetector detector;
-        private Processor<TargetGroup> processor;
-        private TargetGroupSpecs specs;
-
-        public Builder setTargetSpecs(TargetSpecs specs) {
-            this.detector = new TargetDetector.Builder().setTargetSpecs(specs).build();
-            return this;
-        }
-
-        public Builder setTargetGroupSpecs(TargetGroupSpecs specs) {
-            this.specs = specs;
-            return this;
-        }
-
-        public Builder setProcessor(Processor<TargetGroup> processor) {
-            this.processor = processor;
-            return this;
-        }
-
-        public TargetGroupDetector build() {
-            return new TargetGroupDetector(detector, specs, processor);
-        }
-
     }
 
 }
