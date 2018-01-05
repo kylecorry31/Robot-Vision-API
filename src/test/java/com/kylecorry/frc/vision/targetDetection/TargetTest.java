@@ -1,6 +1,5 @@
-package com.kylecorry.frc.vision.targets;
+package com.kylecorry.frc.vision.targetDetection;
 
-import com.kylecorry.frc.vision.targets.Target;
 import com.kylecorry.geometry.Point;
 import org.junit.Test;
 import org.opencv.core.Size;

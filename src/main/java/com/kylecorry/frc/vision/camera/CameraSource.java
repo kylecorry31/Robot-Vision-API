@@ -1,6 +1,6 @@
 package com.kylecorry.frc.vision.camera;
 
-import com.kylecorry.frc.vision.targets.Detector;
+import com.kylecorry.frc.vision.targetDetection.Detector;
 import org.opencv.core.Mat;
 
 import edu.wpi.cscore.CvSink;

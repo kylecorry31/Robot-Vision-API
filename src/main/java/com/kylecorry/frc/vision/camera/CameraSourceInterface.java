@@ -22,7 +22,7 @@ public interface CameraSourceInterface {
     void start();
 
     /**
-     * Stop the camera from streaming and detecting targets.
+     * Stop the camera from streaming and detecting targetDetection.
      */
     void stop();
 

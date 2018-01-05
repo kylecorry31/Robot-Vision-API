@@ -1,9 +1,9 @@
-package com.kylecorry.frc.vision.targets;
+package com.kylecorry.frc.vision.targetDetection;
 
 public class TargetGroupScorer {
 
     /**
-     * Calculate a score from 0 to 100 for the ratio of the widths of the targets.
+     * Calculate a score from 0 to 100 for the ratio of the widths of the targetDetection.
      *
      * @param target     The target group.
      * @param idealRatio The ideal ratio of the first individual target width over the second individual target width.
@@ -14,7 +14,7 @@ public class TargetGroupScorer {
     }
 
     /**
-     * Calculate a score from 0 to 100 for the ratio of the heights of the targets.
+     * Calculate a score from 0 to 100 for the ratio of the heights of the targetDetection.
      *
      * @param target     The target group.
      * @param idealRatio The ideal ratio of the first individual target height over the second individual target height.
@@ -25,7 +25,7 @@ public class TargetGroupScorer {
     }
 
     /**
-     * Calculates a score from 0 to 100 for the targets being aligned to the top of the bounding box drawn around the target group.
+     * Calculates a score from 0 to 100 for the targetDetection being aligned to the top of the bounding box drawn around the target group.
      *
      * @param target The target group.
      * @return a score from 0 to 100.
@@ -36,7 +36,7 @@ public class TargetGroupScorer {
     }
 
     /**
-     * Calculates a score from 0 to 100 for the targets being aligned to the left of the bounding box drawn around the target group.
+     * Calculates a score from 0 to 100 for the targetDetection being aligned to the left of the bounding box drawn around the target group.
      *
      * @param target The target group.
      * @return a score from 0 to 100.

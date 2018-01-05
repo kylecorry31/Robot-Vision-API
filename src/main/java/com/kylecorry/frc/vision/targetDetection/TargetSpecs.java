@@ -1,4 +1,4 @@
-package com.kylecorry.frc.vision.targets;
+package com.kylecorry.frc.vision.targetDetection;
 
 public interface TargetSpecs {
 

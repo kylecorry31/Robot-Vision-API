@@ -1,6 +1,4 @@
-package com.kylecorry.frc.vision.targets;
-
-import com.kylecorry.frc.vision.targets.TargetSpecs;
+package com.kylecorry.frc.vision.targetDetection;
 
 public class SquareTargetSpecs implements TargetSpecs {
 

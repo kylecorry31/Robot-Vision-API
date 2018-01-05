@@ -1,4 +1,4 @@
-package com.kylecorry.frc.vision.targets;
+package com.kylecorry.frc.vision.targetDetection;
 
 import com.kylecorry.frc.vision.contourFilters.ContourFilter;
 import com.kylecorry.frc.vision.contourFilters.ConvexHullContourFilter;
@@ -34,8 +34,8 @@ public class TargetDetector extends Detector<Target> {
     /**
      * Detect the target in the image.
      *
-     * @param frame The image to detect targets in.
-     * @return The list of possible targets ordered by confidence from greatest to least.
+     * @param frame The image to detect targetDetection in.
+     * @return The list of possible targetDetection ordered by confidence from greatest to least.
      */
     @Override
     public List<Target> detect(Mat frame) {

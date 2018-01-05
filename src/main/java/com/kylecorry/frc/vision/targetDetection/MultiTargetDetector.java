@@ -1,7 +1,6 @@
-package com.kylecorry.frc.vision.targets;
+package com.kylecorry.frc.vision.targetDetection;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.opencv.core.Mat;
@@ -12,7 +11,7 @@ public class MultiTargetDetector extends Detector<Target> {
     private List<Detector<? extends Target>> detectors;
 
     /**
-     * Create a MultiTargetDetector to detect multiple types of targets in an image.
+     * Create a MultiTargetDetector to detect multiple types of targetDetection in an image.
      *
      * @param detectors The detector for each target to identify.
      */
@@ -21,10 +20,10 @@ public class MultiTargetDetector extends Detector<Target> {
     }
 
     /**
-     * Detect the targets in the image.
+     * Detect the targetDetection in the image.
      *
-     * @param frame The image to detect targets in.
-     * @return The list of possible targets ordered by confidence from greatest to least and by which detector found the target.
+     * @param frame The image to detect targetDetection in.
+     * @return The list of possible targetDetection ordered by confidence from greatest to least and by which detector found the target.
      */
     @Override
     public List<Target> detect(Mat frame) {
