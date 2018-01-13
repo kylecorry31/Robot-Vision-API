@@ -3,11 +3,11 @@ package com.kylecorry.frc.vision.filters;
 import com.kylecorry.frc.vision.testUtils.OpenCVImageUtils;
 import com.kylecorry.frc.vision.testUtils.OpenCVManager;
 import com.kylecorry.frc.vision.testUtils.SystemProperties;
+import com.kylecorry.geometry.Range;
 import org.junit.Before;
 import org.junit.Test;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
-import org.opencv.core.Range;
 import org.opencv.core.Scalar;
 
 import static org.junit.Assert.assertTrue;
