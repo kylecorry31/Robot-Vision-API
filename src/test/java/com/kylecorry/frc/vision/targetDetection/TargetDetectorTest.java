@@ -1,6 +1,11 @@
 package com.kylecorry.frc.vision.targetDetection;
 
+import com.kylecorry.frc.vision.contourFilters.StandardContourFilter;
 import com.kylecorry.frc.vision.filters.BrightnessFilter;
+import com.kylecorry.frc.vision.testUtils.OpenCVManager;
+import com.kylecorry.frc.vision.testUtils.SystemProperties;
+import com.kylecorry.geometry.Range;
+import org.junit.Before;
 import org.junit.Test;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
@@ -16,9 +21,14 @@ public class TargetDetectorTest {
 
     private TargetDetector targetDetector;
 
+    @Before
+    public void setup(){
+        OpenCVManager.getInstance().load(new SystemProperties());
+    }
+
     @Test
     public void testTargetDetector(){
-        targetDetector = new TargetDetector(new SquareTargetSpecs(), new BrightnessFilter(200, 255), 10);
+        targetDetector = new TargetDetector(new SquareTargetSpecs(), new BrightnessFilter(200, 255), new StandardContourFilter(new Range(2, 100), new Range(0, 100), new Range(0, 100), 100 * 100));
 
         Mat image = Mat.zeros(100, 100, CvType.CV_8UC3);
         Imgproc.rectangle(image, new Point(1, 1), new Point(2, 2), Scalar.all(255));
