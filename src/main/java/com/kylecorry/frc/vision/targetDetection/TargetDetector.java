@@ -17,7 +17,7 @@ public class TargetDetector extends Detector<Target> {
 
     protected TargetSpecs targetSpecs;
     private TargetFilter filter;
-    private double minPixelArea;
+    private ContourFilter contourFilter;
 
 
     /**
@@ -25,10 +25,10 @@ public class TargetDetector extends Detector<Target> {
      *
      * @param specs The specifications of the target.
      */
-    public TargetDetector(TargetSpecs specs, TargetFilter filter, double minPixelArea) {
+    public TargetDetector(TargetSpecs specs, TargetFilter filter, ContourFilter contourFilter) {
         this.targetSpecs = specs;
         this.filter = filter;
-        this.minPixelArea = minPixelArea;
+        this.contourFilter = contourFilter;
     }
 
     /**
@@ -47,7 +47,6 @@ public class TargetDetector extends Detector<Target> {
 
         filtered.release();
 
-        ContourFilter contourFilter = new ConvexHullContourFilter(minPixelArea, 0, new Range(0, 1000), new Range(0, 1000), new Range(0, 100), new Range(0, 1000000), new Range(0, 1000));
         contours = contourFilter.filterContours(contours);
 
 
