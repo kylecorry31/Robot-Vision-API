@@ -6,7 +6,6 @@ import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class StandardContourFilter implements ContourFilter {

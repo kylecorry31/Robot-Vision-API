@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.HomeController">
+   <children>
+      <Button layoutX="270.0" layoutY="395.0" mnemonicParsing="false" onAction="#startVision" text="Find Targets" />
+      <Label layoutX="249.0" layoutY="32.0" text="Robot Vision API Test" />
+      <TextField fx:id="minHueTF" layoutX="14.0" layoutY="78.0" promptText="Min hue" />
+      <TextField fx:id="maxHueTF" layoutX="14.0" layoutY="118.0" promptText="Max hue" />
+      <TextField fx:id="minSatTF" layoutX="227.0" layoutY="78.0" promptText="Min saturation" />
+      <TextField fx:id="maxSatTF" layoutX="227.0" layoutY="118.0" promptText="Max saturation" />
+      <TextField fx:id="minValTF" layoutX="439.0" layoutY="78.0" promptText="Min value" />
+      <TextField fx:id="maxValTF" layoutX="439.0" layoutY="118.0" promptText="Max value" />
+      <TextField fx:id="widthTF" layoutX="14.0" layoutY="186.0" promptText="Target width" />
+      <TextField fx:id="heightTF" layoutX="14.0" layoutY="225.0" promptText="Target height" />
+      <Label layoutX="14.0" layoutY="53.0" text="HSV Filtering" />
+      <Label layoutX="14.0" layoutY="165.0" text="Target Information" />
+      <TextField fx:id="areaTF" layoutX="228.0" layoutY="186.0" promptText="Target area" />
+      <TextField fx:id="pixelAreaTF" layoutX="227.0" layoutY="225.0" promptText="Min pixel area" />
+      <TextField fx:id="viewAngleTF" layoutX="14.0" layoutY="301.0" promptText="View angle (degrees)" />
+      <TextField fx:id="distTF" layoutX="228.0" layoutY="301.0" promptText="Height above camera (optional)" />
+      <Label layoutX="14.0" layoutY="280.0" text="Camera Information" />
+      <Label layoutX="227.0" layoutY="280.0" text="(optional)" />
+   </children>
+</AnchorPane>
