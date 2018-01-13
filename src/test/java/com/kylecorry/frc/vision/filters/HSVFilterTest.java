@@ -3,9 +3,12 @@ package com.kylecorry.frc.vision.filters;
 import com.kylecorry.frc.vision.testUtils.OpenCVImageUtils;
 import com.kylecorry.frc.vision.testUtils.OpenCVManager;
 import com.kylecorry.frc.vision.testUtils.SystemProperties;
+import com.kylecorry.geometry.Range;
 import org.junit.Before;
 import org.junit.Test;
-import org.opencv.core.*;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.core.Scalar;
 
 import static org.junit.Assert.*;
 
@@ -26,7 +29,7 @@ public class HSVFilterTest {
         image.row(2).setTo(new Scalar(0, 255, 0));
 
 
-        filter = new HSVFilter(new Range(0, 20), new Range(0, 255), new Range(1, 255));
+        filter = new HSVFilter(new Range(0, 10), new Range(0, 255), new Range(1, 255));
 
         Mat red = filter.filter(image);
 
@@ -35,7 +38,7 @@ public class HSVFilterTest {
 
         assertTrue(OpenCVImageUtils.matEquals(redRow, red));
 
-        filter = new HSVFilter(new Range(230, 250), new Range(0, 255), new Range(1, 255));
+        filter = new HSVFilter(new Range(115, 125), new Range(0, 255), new Range(1, 255));
 
         Mat blue = filter.filter(image);
 
@@ -44,7 +47,7 @@ public class HSVFilterTest {
 
         assertTrue(OpenCVImageUtils.matEquals(blueRow, blue));
 
-        filter = new HSVFilter(new Range(110, 130), new Range(0, 255), new Range(1, 255));
+        filter = new HSVFilter(new Range(55, 65), new Range(0, 255), new Range(1, 255));
 
         Mat green = filter.filter(image);
 
