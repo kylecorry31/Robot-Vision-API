@@ -49,7 +49,15 @@ public class SingleTargetConverter implements ContourToTargetConverter {
             targets.add(target);
         }
 
-        targets.sort(Comparator.comparingDouble(Target::getPercentArea));
+        targets.sort((target, t1) -> {
+            if(target.getPercentArea() > t1.getPercentArea()){
+                return -1;
+            } else if(target.getPercentArea() == t1.getPercentArea()){
+                return 0;
+            } else {
+                return 1;
+            }
+        });
 
         return targets;
     }

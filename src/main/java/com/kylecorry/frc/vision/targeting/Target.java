@@ -2,6 +2,8 @@ package com.kylecorry.frc.vision.targeting;
 
 import org.opencv.core.RotatedRect;
 
+import java.util.Objects;
+
 public class Target {
 
     private double horizontalAngle, verticalAngle;
@@ -38,5 +40,34 @@ public class Target {
 
     public double getSkew() {
         return skew;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Target target = (Target) o;
+        return Double.compare(target.horizontalAngle, horizontalAngle) == 0 &&
+                Double.compare(target.verticalAngle, verticalAngle) == 0 &&
+                Double.compare(target.percentArea, percentArea) == 0 &&
+                Double.compare(target.skew, skew) == 0 &&
+                Objects.equals(boundary, target.boundary);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(horizontalAngle, verticalAngle, percentArea, skew, boundary);
+    }
+
+    @Override
+    public String toString() {
+        return "Target{" +
+                "horizontalAngle=" + horizontalAngle +
+                ", verticalAngle=" + verticalAngle +
+                ", percentArea=" + percentArea +
+                ", skew=" + skew +
+                ", boundary=" + boundary +
+                '}';
     }
 }

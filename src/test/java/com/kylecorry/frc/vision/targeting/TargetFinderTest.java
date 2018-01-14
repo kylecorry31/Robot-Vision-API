@@ -32,7 +32,7 @@ public class TargetFinderTest {
         OpenCVManager.getInstance().load(new SystemProperties());
         TargetFilter filter = new BrightnessFilter(200, 255);
         ContourFilter contourFilter = new StandardContourFilter(new Range(0.03, 100), new Range(0, 100), new Range(0, 100), 640 * 480);
-        CameraSettings cameraSettings = new CameraSettings(false, 2, new FOV(60, 60), new Resolution(640, 480));
+        CameraSettings cameraSettings = new CameraSettings(false, new FOV(60, 60), new Resolution(640, 480));
 
         targetFinder = new TargetFinder(cameraSettings, filter, contourFilter, TargetGrouping.SINGLE);
 

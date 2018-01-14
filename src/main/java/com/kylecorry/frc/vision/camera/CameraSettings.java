@@ -6,16 +6,13 @@ public class CameraSettings {
 
     private boolean inverted;
 
-    private int exposure;
-
     private FOV fov;
 
     private Resolution resolution;
 
 
-    public CameraSettings(boolean inverted, int exposure, FOV fov, Resolution resolution) {
+    public CameraSettings(boolean inverted, FOV fov, Resolution resolution) {
         this.inverted = inverted;
-        this.exposure = exposure;
         this.fov = fov;
         this.resolution = resolution;
     }
@@ -28,13 +25,6 @@ public class CameraSettings {
         this.inverted = inverted;
     }
 
-    public int getExposure() {
-        return exposure;
-    }
-
-    public void setExposure(int exposure) {
-        this.exposure = exposure;
-    }
 
     public FOV getFov() {
         return fov;
@@ -56,7 +46,6 @@ public class CameraSettings {
     public String toString() {
         return "CameraSettings{" +
                 "inverted=" + inverted +
-                ", exposure=" + exposure +
                 ", fov=" + fov +
                 ", resolution=" + resolution +
                 '}';
@@ -68,7 +57,6 @@ public class CameraSettings {
         if (o == null || getClass() != o.getClass()) return false;
         CameraSettings settings = (CameraSettings) o;
         return inverted == settings.inverted &&
-                exposure == settings.exposure &&
                 Objects.equals(fov, settings.fov) &&
                 Objects.equals(resolution, settings.resolution);
     }
@@ -76,6 +64,6 @@ public class CameraSettings {
     @Override
     public int hashCode() {
 
-        return Objects.hash(inverted, exposure, fov, resolution);
+        return Objects.hash(inverted, fov, resolution);
     }
 }

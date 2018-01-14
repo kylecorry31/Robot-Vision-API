@@ -12,10 +12,9 @@ public class CameraSettingsTest {
         FOV fov = new FOV(60, 50);
         Resolution resolution = new Resolution(320, 240);
         int exposure = 2;
-        CameraSettings settings = new CameraSettings(inverted, exposure, fov, resolution);
+        CameraSettings settings = new CameraSettings(inverted, fov, resolution);
 
         assertEquals(inverted, settings.isInverted());
-        assertEquals(exposure, settings.getExposure());
         assertEquals(fov, settings.getFov());
         assertEquals(resolution, settings.getResolution());
 
