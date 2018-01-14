@@ -1,8 +1,8 @@
 package com.kylecorry.frc.vision.frc.targets2017;
 
-import com.kylecorry.frc.vision.targetDetection.TargetGroupDetector;
+import com.kylecorry.frc.vision.targetDetection.DoubleTargetDetector;
 
-public class BoilerTargetDetector extends TargetGroupDetector {
+public class BoilerTargetDetector extends DoubleTargetDetector {
     public BoilerTargetDetector(BoilerTopTargetDetector targetDetector) {
         super(targetDetector, new BoilerTarget());
     }

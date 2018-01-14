@@ -1,8 +1,8 @@
 package com.kylecorry.frc.vision.frc.targets2017;
 
-import com.kylecorry.frc.vision.targetDetection.TargetGroupSpecs;
+import com.kylecorry.frc.vision.targetDetection.DoubleTargetSpecs;
 
-public class PegTarget implements TargetGroupSpecs {
+public class PegTarget implements DoubleTargetSpecs {
     @Override
     public double getTargetWidthRatio() {
         return 0.2;

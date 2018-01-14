@@ -1,7 +1,6 @@
 package com.kylecorry.frc.vision.targetDetection;
 
 import com.kylecorry.frc.vision.contourFilters.ContourFilter;
-import com.kylecorry.frc.vision.contourFilters.ConvexHullContourFilter;
 import com.kylecorry.frc.vision.contourFinders.ContourFinder;
 import com.kylecorry.frc.vision.contourFinders.StandardContourFinder;
 import com.kylecorry.frc.vision.filters.TargetFilter;
@@ -13,7 +12,7 @@ import org.opencv.imgproc.Moments;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TargetDetector extends Detector<Target> {
+public class TargetDetector extends Detector<SingleTarget> {
 
     protected TargetSpecs targetSpecs;
     private TargetFilter filter;
@@ -38,7 +37,7 @@ public class TargetDetector extends Detector<Target> {
      * @return The list of possible targetDetection ordered by confidence from greatest to least.
      */
     @Override
-    public List<Target> detect(Mat frame) {
+    public List<SingleTarget> detect(Mat frame) {
         Mat filtered = filter.filter(frame);
 
         ContourFinder contourFinder = new StandardContourFinder();
@@ -50,7 +49,7 @@ public class TargetDetector extends Detector<Target> {
         contours = contourFilter.filterContours(contours);
 
 
-        List<Target> detections = new ArrayList<>();
+        List<SingleTarget> detections = new ArrayList<>();
         for (MatOfPoint contour : contours) {
             Rect boundary = Imgproc.boundingRect(contour);
             double aspectRatio = (boundary.width / (double) boundary.height);
@@ -66,7 +65,7 @@ public class TargetDetector extends Detector<Target> {
 
             Point centerOfMass = new Point(moments.m10 / moments.m00, moments.m01 / moments.m00, 0);
 
-            Target target = new Target(confidence, boundary.width - 1, boundary.height - 1,
+            SingleTarget target = new SingleTarget(confidence, boundary.width - 1, boundary.height - 1,
                     new Point(boundary.x, boundary.y, 0), centerOfMass, frame.size());
             detections.add(target);
         }
