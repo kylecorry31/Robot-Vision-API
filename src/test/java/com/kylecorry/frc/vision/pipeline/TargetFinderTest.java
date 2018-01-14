@@ -45,13 +45,13 @@ public class TargetFinderTest {
 
         assertEquals(1, targets.size());
 
-        assertEquals(116.3, targets.get(0).getHorizontalAngle(), 0.15);
+        assertEquals(-26.3472946, targets.get(0).getHorizontalAngle(), 0.15);
 
         assertEquals((10 * 10.0) / (640 * 480) * 100, targets.get(0).getPercentArea(), 0.005);
 
         assertEquals(-90.0, targets.get(0).getSkew(), 0.01);
 
-        assertEquals(88.5514, targets.get(0).getVerticalAngle(), 0.15);
+        assertEquals(-1.4469, targets.get(0).getVerticalAngle(), 0.15);
 
         image.release();
 

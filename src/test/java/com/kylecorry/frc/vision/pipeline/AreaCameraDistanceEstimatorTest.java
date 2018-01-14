@@ -13,7 +13,7 @@ public class AreaCameraDistanceEstimatorTest {
 
     @Before
     public void setUp() throws Exception {
-        target = new TargetOutput(0, 10, 75, -90);
+        target = new TargetOutput(0, 10, 75, -90, null);
         distanceEstimator = new AreaCameraDistanceEstimator(new AreaCameraDistanceEstimator.AreaDistancePair(100, 0), new AreaCameraDistanceEstimator.AreaDistancePair(50, 10));
     }
 

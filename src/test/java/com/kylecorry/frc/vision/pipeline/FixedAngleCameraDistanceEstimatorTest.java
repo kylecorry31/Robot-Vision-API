@@ -13,7 +13,7 @@ public class FixedAngleCameraDistanceEstimatorTest {
 
     @Before
     public void setUp() throws Exception {
-        target = new TargetOutput(0, 10, 10, -90);
+        target = new TargetOutput(0, 10, 10, -90, null);
         distanceEstimator = new FixedAngleCameraDistanceEstimator(10, 1, 10);
     }
 

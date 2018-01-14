@@ -36,14 +36,14 @@ public class SingleTargetConverter implements ContourToTargetConverter {
             double x = vpw / 2.0 * nx;
             double y = vph / 2.0 * ny;
 
-            double horizontalAngle = Math.toDegrees(Math.atan2(1.0, x));
-            double verticalAngle = Math.toDegrees(Math.atan2(1.0, y));
+            double horizontalAngle = Math.toDegrees(Math.atan(x));
+            double verticalAngle = -Math.toDegrees(Math.atan(y));
 
             double percentArea = boundary.size.area() / imageArea * 100.0;
             double skew = boundary.angle;
 
 
-            TargetOutput targetOutput = new TargetOutput(horizontalAngle, verticalAngle, percentArea, skew);
+            TargetOutput targetOutput = new TargetOutput(horizontalAngle, verticalAngle, percentArea, skew, boundary);
             targets.add(targetOutput);
         }
 
