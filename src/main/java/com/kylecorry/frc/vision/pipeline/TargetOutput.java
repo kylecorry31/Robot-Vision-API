@@ -1,5 +1,7 @@
 package com.kylecorry.frc.vision.pipeline;
 
+import org.opencv.core.RotatedRect;
+
 public class TargetOutput {
 
     private double horizontalAngle, verticalAngle;
@@ -8,11 +10,18 @@ public class TargetOutput {
 
     private double skew;
 
-    public TargetOutput(double horizontalAngle, double verticalAngle, double percentArea, double skew) {
+    private RotatedRect rect;
+
+    public TargetOutput(double horizontalAngle, double verticalAngle, double percentArea, double skew, RotatedRect rect) {
         this.horizontalAngle = horizontalAngle;
         this.verticalAngle = verticalAngle;
         this.percentArea = percentArea;
         this.skew = skew;
+        this.rect = rect;
+    }
+
+    public RotatedRect getRect() {
+        return rect;
     }
 
     public double getHorizontalAngle() {
@@ -30,4 +39,6 @@ public class TargetOutput {
     public double getSkew() {
         return skew;
     }
+
+
 }

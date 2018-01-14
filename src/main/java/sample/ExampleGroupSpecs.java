@@ -1,9 +1,10 @@
 package sample;
 
 
-import com.kylecorry.frc.vision.targetDetection.TargetGroupSpecs;
+import com.kylecorry.frc.vision.targetDetection.DoubleTarget;
+import com.kylecorry.frc.vision.targetDetection.DoubleTargetSpecs;
 
-public class ExampleGroupSpecs implements TargetGroupSpecs {
+public class ExampleGroupSpecs implements DoubleTargetSpecs {
 
 	@Override
 	public double getTargetWidthRatio() {

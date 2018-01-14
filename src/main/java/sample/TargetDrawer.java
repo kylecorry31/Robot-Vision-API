@@ -1,11 +1,13 @@
 package sample;
 
+import com.kylecorry.frc.vision.pipeline.TargetOutput;
 import com.kylecorry.frc.vision.targetDetection.Target;
 import javafx.scene.paint.Color;
-import org.opencv.core.Mat;
-import org.opencv.core.Rect;
-import org.opencv.core.Scalar;
+import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Kyle on 4/6/2017.
@@ -19,13 +21,17 @@ public class TargetDrawer {
         pointColor = new Scalar(point.getBlue() * 255, point.getGreen() * 255, point.getRed() * 255);
     }
 
-    public void draw(Target target, Mat image){
-        Rect boundary = new Rect(MathExt.roundToInt(target.getPosition().x), MathExt.roundToInt(target.getPosition().y),
-                MathExt.roundToInt(target.getWidth()), MathExt.roundToInt(target.getHeight()));
-        ImageEditor.drawRectangleToMat(image, boundary, outlineColor);
+    public void draw(TargetOutput target, Mat image){
+        RotatedRect rect = target.getRect();
+        Point[] points = new Point[4];
+        rect.points(points);
+        MatOfPoint contour = new MatOfPoint(points);
 
-        Imgproc.drawMarker(image, new org.opencv.core.Point(target.getCenterPosition().x, target.getCenterPosition().y),
-                pointColor);
+        List<MatOfPoint> contours = Arrays.asList(contour);
+
+        Imgproc.drawContours(image, contours, 0, outlineColor);
+
+        Imgproc.drawMarker(image, target.getRect().center, pointColor);
     }
 
 }

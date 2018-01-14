@@ -4,19 +4,21 @@ import com.kylecorry.frc.vision.contourFilters.ContourFilter;
 import com.kylecorry.frc.vision.contourFilters.StandardContourFilter;
 import com.kylecorry.frc.vision.filters.HSVFilter;
 import com.kylecorry.frc.vision.filters.TargetFilter;
+import com.kylecorry.frc.vision.pipeline.*;
 import com.kylecorry.frc.vision.targetDetection.Target;
 import com.kylecorry.frc.vision.targetDetection.TargetDetector;
 import com.kylecorry.geometry.Point;
+import com.kylecorry.geometry.Range;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import org.opencv.core.Mat;
-import org.opencv.core.Range;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.videoio.VideoCapture;
 
@@ -35,6 +37,12 @@ public class FilterController implements IController, Initializable {
 
     @FXML
     Button contourToggle;
+
+    @FXML
+    Label hVA, vVA;
+
+    @FXML
+    Label dist, area;
 
     private boolean detectContours = false;
 
@@ -64,8 +72,14 @@ public class FilterController implements IController, Initializable {
                     new com.kylecorry.geometry.Range(fullMin.getValue(), fullMax.getValue()),
                     new com.kylecorry.geometry.Range(aspectMin.getValue(), aspectMax.getValue()), image.size().area());
 
-            TargetDetector detector = new TargetDetector(new ExampleSpecs(), filter, contourFilter);
-            List<Target> targets = detector.detect(image);
+            TargetFinder detector = new TargetFinder(new CameraSettings(false, 0, new ViewAngle(60, 60), new Resolution((int) image.size().width, (int) image.size().height)), filter, contourFilter, TargetGrouping.SINGLE);
+            List<TargetOutput> targets = detector.findTargets(image);
+            if(!targets.isEmpty()){
+                area.setText(targets.get(0).getPercentArea() + "");
+                hVA.setText(targets.get(0).getHorizontalAngle() + "");
+                vVA.setText(targets.get(0).getVerticalAngle() + "");
+//                dist.setText(targets.get(0).getPercentArea() + "");
+            }
             image = filteredImage;
             Imgproc.cvtColor(image, image, Imgproc.COLOR_GRAY2BGR);
             outlineTarget(targets);
@@ -89,14 +103,14 @@ public class FilterController implements IController, Initializable {
         UISwitcher.getInstance().switchToPage(UISwitcher.HOME_PAGE);
     }
 
-    private void outlineTarget(List<Target> targets) {
-        for (Target target : targets) {
+    private void outlineTarget(List<TargetOutput> targets) {
+        for (TargetOutput target : targets) {
             outline(target);
         }
 
     }
 
-    private void outline(Target target) {
+    private void outline(TargetOutput target) {
         targetDrawer.draw(target, image);
     }
 

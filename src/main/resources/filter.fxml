@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -21,5 +22,9 @@
       <Slider fx:id="aspectMin" layoutX="233.0" layoutY="615.0" />
       <Slider fx:id="aspectMax" layoutX="233.0" layoutY="644.0" />
       <Button fx:id="contourToggle" layoutX="448.0" layoutY="507.0" mnemonicParsing="false" onAction="#toggleContours" text="Show Contours" />
+      <Label fx:id="hVA" layoutX="448.0" layoutY="547.0" text="Label" />
+      <Label fx:id="vVA" layoutX="448.0" layoutY="571.0" text="Label" />
+      <Label fx:id="dist" layoutX="448.0" layoutY="599.0" text="Label" />
+      <Label fx:id="area" layoutX="448.0" layoutY="623.0" text="Label" />
    </children>
 </AnchorPane>
