@@ -5,9 +5,7 @@ import com.kylecorry.frc.vision.contourFilters.ContourFilter;
 import com.kylecorry.frc.vision.contourFinders.ContourFinder;
 import com.kylecorry.frc.vision.contourFinders.StandardContourFinder;
 import com.kylecorry.frc.vision.filters.TargetFilter;
-import com.kylecorry.frc.vision.targetConverters.ContourToTargetConverter;
-import com.kylecorry.frc.vision.targetConverters.SingleTargetConverter;
-import com.kylecorry.frc.vision.targetConverters.TargetGrouping;
+import com.kylecorry.frc.vision.targetConverters.*;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
@@ -39,7 +37,11 @@ public class TargetFinder {
                 contourToTargetConverter = new SingleTargetConverter();
                 break;
             case DOUBLE:
+                contourToTargetConverter = new DoubleTargetConverter();
+                break;
             case TRIPLE:
+                contourToTargetConverter = new TripleTargetConverter();
+                break;
             default:
                 contourToTargetConverter = new SingleTargetConverter();
         }
