@@ -8,15 +8,17 @@ import com.kylecorry.frc.vision.testUtils.OpenCVManager;
 import com.kylecorry.frc.vision.testUtils.SystemProperties;
 import org.junit.Before;
 import org.junit.Test;
-import org.opencv.core.*;
-import org.opencv.imgproc.Imgproc;
+import org.opencv.core.MatOfPoint;
+import org.opencv.core.Point;
+import org.opencv.core.RotatedRect;
+import org.opencv.core.Size;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-public class SingleTargetConverterTest {
+public class TripleTargetConverterTest {
 
     @Before
     public void setUp() throws Exception {
@@ -32,25 +34,25 @@ public class SingleTargetConverterTest {
         MatOfPoint contour = new MatOfPoint();
         contour.fromList(points);
 
-        List<Point> points2 = Arrays.asList(new Point(30, 30), new Point(30, 35), new Point(35, 35), new Point(35, 30));
+        List<Point> points2 = Arrays.asList(new Point(30, 10), new Point(30, 15), new Point(35, 15), new Point(35, 10));
         MatOfPoint contour2 = new MatOfPoint();
         contour2.fromList(points2);
 
-        List<MatOfPoint> contours = Arrays.asList(contour, contour2);
+        List<Point> points3 = Arrays.asList(new Point(30, 20), new Point(30, 25), new Point(35, 25), new Point(35, 20));
+        MatOfPoint contour3 = new MatOfPoint();
+        contour3.fromList(points3);
 
-        SingleTargetConverter targetConverter = new SingleTargetConverter();
+        List<MatOfPoint> contours = Arrays.asList(contour, contour2, contour3);
+
+        TripleTargetConverter targetConverter = new TripleTargetConverter();
 
         List<Target> targets = targetConverter.convertContours(contours, cameraSettings);
 
-        assertEquals(2, targets.size());
+        assertEquals(1, targets.size());
 
-        RotatedRect rect1 = new RotatedRect(new Point(15, 15), new Size(10, 10), -90);
+        RotatedRect rect = new RotatedRect(new Point(22.5, 17.5), new Size(15, 25), -90);
 
-        assertEquals(rect1, targets.get(0).getBoundary());
-
-        RotatedRect rect2 = new RotatedRect(new Point(32.5, 32.5), new Size(5, 5), -90);
-
-        assertEquals(rect2, targets.get(1).getBoundary());
+        assertEquals(rect, targets.get(0).getBoundary());
 
     }
 
