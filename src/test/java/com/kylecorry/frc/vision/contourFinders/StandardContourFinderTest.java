@@ -1,6 +1,5 @@
 package com.kylecorry.frc.vision.contourFinders;
 
-import com.kylecorry.frc.vision.contourFinders.StandardContourFinder;
 import com.kylecorry.frc.vision.testUtils.OpenCVManager;
 import com.kylecorry.frc.vision.testUtils.SystemProperties;
 import org.junit.Before;
