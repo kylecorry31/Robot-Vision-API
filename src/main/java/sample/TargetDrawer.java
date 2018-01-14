@@ -1,7 +1,6 @@
 package sample;
 
-import com.kylecorry.frc.vision.pipeline.TargetOutput;
-import com.kylecorry.frc.vision.targetDetection.Target;
+import com.kylecorry.frc.vision.targeting.Target;
 import javafx.scene.paint.Color;
 import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
@@ -21,8 +20,8 @@ public class TargetDrawer {
         pointColor = new Scalar(point.getBlue() * 255, point.getGreen() * 255, point.getRed() * 255);
     }
 
-    public void draw(TargetOutput target, Mat image){
-        RotatedRect rect = target.getRect();
+    public void draw(Target target, Mat image){
+        RotatedRect rect = target.getBoundary();
         Point[] points = new Point[4];
         rect.points(points);
         MatOfPoint contour = new MatOfPoint(points);
@@ -31,7 +30,7 @@ public class TargetDrawer {
 
         Imgproc.drawContours(image, contours, 0, outlineColor);
 
-        Imgproc.drawMarker(image, target.getRect().center, pointColor);
+        Imgproc.drawMarker(image, target.getBoundary().center, pointColor);
     }
 
 }

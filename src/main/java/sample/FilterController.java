@@ -1,13 +1,15 @@
 package sample;
 
+import com.kylecorry.frc.vision.camera.CameraSettings;
+import com.kylecorry.frc.vision.camera.FOV;
+import com.kylecorry.frc.vision.camera.Resolution;
 import com.kylecorry.frc.vision.contourFilters.ContourFilter;
 import com.kylecorry.frc.vision.contourFilters.StandardContourFilter;
 import com.kylecorry.frc.vision.filters.HSVFilter;
 import com.kylecorry.frc.vision.filters.TargetFilter;
-import com.kylecorry.frc.vision.pipeline.*;
-import com.kylecorry.frc.vision.targetDetection.Target;
-import com.kylecorry.frc.vision.targetDetection.TargetDetector;
-import com.kylecorry.geometry.Point;
+import com.kylecorry.frc.vision.targetConverters.TargetGrouping;
+import com.kylecorry.frc.vision.targeting.Target;
+import com.kylecorry.frc.vision.targeting.TargetFinder;
 import com.kylecorry.geometry.Range;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
@@ -72,8 +74,8 @@ public class FilterController implements IController, Initializable {
                     new com.kylecorry.geometry.Range(fullMin.getValue(), fullMax.getValue()),
                     new com.kylecorry.geometry.Range(aspectMin.getValue(), aspectMax.getValue()), image.size().area());
 
-            TargetFinder detector = new TargetFinder(new CameraSettings(false, 0, new ViewAngle(60, 60), new Resolution((int) image.size().width, (int) image.size().height)), filter, contourFilter, TargetGrouping.SINGLE);
-            List<TargetOutput> targets = detector.findTargets(image);
+            TargetFinder detector = new TargetFinder(new CameraSettings(false, new FOV(60, 60), new Resolution((int) image.size().width, (int) image.size().height)), filter, contourFilter, TargetGrouping.TRIPLE);
+            List<Target> targets = detector.findTargets(image);
             if(!targets.isEmpty()){
                 area.setText(targets.get(0).getPercentArea() + "");
                 hVA.setText(targets.get(0).getHorizontalAngle() + "");
@@ -103,14 +105,14 @@ public class FilterController implements IController, Initializable {
         UISwitcher.getInstance().switchToPage(UISwitcher.HOME_PAGE);
     }
 
-    private void outlineTarget(List<TargetOutput> targets) {
-        for (TargetOutput target : targets) {
+    private void outlineTarget(List<Target> targets) {
+        for (Target target : targets) {
             outline(target);
         }
 
     }
 
-    private void outline(TargetOutput target) {
+    private void outline(Target target) {
         targetDrawer.draw(target, image);
     }
 

@@ -2,7 +2,6 @@ package sample;
 
 import com.kylecorry.frc.vision.contourFilters.ContourFilter;
 import com.kylecorry.frc.vision.filters.TargetFilter;
-import com.kylecorry.frc.vision.targetDetection.TargetSpecs;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,10 +17,6 @@ public class Bundle {
         data = new HashMap<>();
     }
 
-    public void putTargetSpecs(String key, TargetSpecs specs) {
-        data.put(key, specs);
-    }
-
 
     public void putContourFilter(String key, ContourFilter filter){
         data.put(key, filter);
@@ -33,10 +28,6 @@ public class Bundle {
 
     public void putDouble(String key, double value) {
         data.put(key, value);
-    }
-
-    public TargetSpecs getTargetSpecs(String key) {
-        return (TargetSpecs) data.get(key);
     }
 
     public ContourFilter getContourFilter(String key){

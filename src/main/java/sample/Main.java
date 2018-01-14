@@ -16,7 +16,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/filter.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("Robot Vision API Testing");
-        primaryStage.setScene(new Scene(root, 640, 530));
+        primaryStage.setScene(new Scene(root, 640, 720));
         primaryStage.show();
         UISwitcher.getInstance().switchToPage(UISwitcher.FILTER_PAGE);
     }
