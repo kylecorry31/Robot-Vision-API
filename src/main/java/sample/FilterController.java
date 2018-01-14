@@ -21,6 +21,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import org.opencv.core.Mat;
+import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.videoio.VideoCapture;
 
@@ -57,10 +58,24 @@ public class FilterController implements IController, Initializable {
 
     private AnimationTimer cameraFeed;
 
+    private int num = 1;
+
+    private int frame = 0;
+
     public void displayCameraFeed() {
 
 
-        cap.read(image);
+//        cap.read(image);
+
+        frame++;
+
+        if(frame % 100 == 0) {
+            num %= 17;
+            num++;
+            frame = 0;
+        }
+
+        image = Imgcodecs.imread("peg/peg" + num + ".jpg");
 
         filter = new HSVFilter(new Range((int) hueMin.getValue(), (int) hueMax.getValue()),
                 new Range((int) satMin.getValue(), (int) satMax.getValue()),
@@ -74,7 +89,7 @@ public class FilterController implements IController, Initializable {
                     new com.kylecorry.geometry.Range(fullMin.getValue(), fullMax.getValue()),
                     new com.kylecorry.geometry.Range(aspectMin.getValue(), aspectMax.getValue()), image.size().area());
 
-            TargetFinder detector = new TargetFinder(new CameraSettings(false, new FOV(60, 60), new Resolution((int) image.size().width, (int) image.size().height)), filter, contourFilter, TargetGrouping.TRIPLE);
+            TargetFinder detector = new TargetFinder(new CameraSettings(false, new FOV(60, 60), new Resolution((int) image.size().width, (int) image.size().height)), filter, contourFilter, TargetGrouping.DOUBLE);
             List<Target> targets = detector.findTargets(image);
             if(!targets.isEmpty()){
                 area.setText(targets.get(0).getPercentArea() + "");
