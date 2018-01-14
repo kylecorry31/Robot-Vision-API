@@ -2,11 +2,11 @@ package com.kylecorry.frc.vision;
 
 public class Version {
     public int getMajorVersion(){
-        return 0;
+        return 1;
     }
 
     public int getMinorVersion(){
-        return 7;
+        return 0;
     }
 
     public int getBuildVersion(){
