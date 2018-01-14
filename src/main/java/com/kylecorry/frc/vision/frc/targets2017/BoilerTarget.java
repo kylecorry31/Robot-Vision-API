@@ -1,9 +1,9 @@
 package com.kylecorry.frc.vision.frc.targets2017;
 
-import com.kylecorry.frc.vision.targetDetection.TargetGroupSpecs;
+import com.kylecorry.frc.vision.targetDetection.DoubleTargetSpecs;
 import com.kylecorry.frc.vision.targetDetection.TargetSpecs;
 
-public class BoilerTarget implements TargetGroupSpecs {
+public class BoilerTarget implements DoubleTargetSpecs {
 
     private TargetSpecs top, bottom;
 

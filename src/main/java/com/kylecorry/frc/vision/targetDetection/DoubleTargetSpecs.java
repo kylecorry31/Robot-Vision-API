@@ -1,8 +1,8 @@
 package com.kylecorry.frc.vision.targetDetection;
 
-public interface TargetGroupSpecs {
+public interface DoubleTargetSpecs {
 
-	public static enum Alignment {
+	enum Alignment {
 		LEFT, TOP
 	}
 

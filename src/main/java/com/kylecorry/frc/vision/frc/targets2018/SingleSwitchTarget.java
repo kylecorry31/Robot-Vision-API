@@ -1,8 +1,8 @@
 package com.kylecorry.frc.vision.frc.targets2018;
 
-import com.kylecorry.frc.vision.targetDetection.TargetGroupSpecs;
+import com.kylecorry.frc.vision.targetDetection.DoubleTargetSpecs;
 
-public class SingleSwitchTarget implements TargetGroupSpecs {
+public class SingleSwitchTarget implements DoubleTargetSpecs {
     @Override
     public double getTargetWidthRatio() {
         return 0.25;

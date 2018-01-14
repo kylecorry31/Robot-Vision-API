@@ -2,7 +2,9 @@ package com.kylecorry.frc.vision.contourFilters;
 
 import com.kylecorry.geometry.Range;
 import org.opencv.core.MatOfPoint;
+import org.opencv.core.MatOfPoint2f;
 import org.opencv.core.Rect;
+import org.opencv.core.RotatedRect;
 import org.opencv.imgproc.Imgproc;
 
 import java.util.ArrayList;
@@ -34,9 +36,10 @@ public class StandardContourFilter implements ContourFilter {
     public List<MatOfPoint> filterContours(List<MatOfPoint> contours) {
         List<MatOfPoint> output = new ArrayList<>();
         for (MatOfPoint contour : contours) {
-            final Rect boundingRect = Imgproc.boundingRect(contour);
 
-            final double rectArea = boundingRect.area();
+            final RotatedRect boundingRect = Imgproc.minAreaRect(new MatOfPoint2f(contour.toArray()));
+
+            final double rectArea = boundingRect.size.area();
 
             final double targetAreaPercent = rectArea / imageArea * 100;
 
@@ -44,7 +47,7 @@ public class StandardContourFilter implements ContourFilter {
                 continue;
             }
 
-            final double targetAspect = boundingRect.width / boundingRect.height;
+            final double targetAspect = boundingRect.size.width / boundingRect.size.height;
 
             if (!aspectRatio.inRangeInclusive(targetAspect)) {
                 continue;

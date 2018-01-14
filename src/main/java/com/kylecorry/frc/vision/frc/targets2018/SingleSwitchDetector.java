@@ -1,10 +1,8 @@
 package com.kylecorry.frc.vision.frc.targets2018;
 
-import com.kylecorry.frc.vision.targetDetection.TargetDetector;
-import com.kylecorry.frc.vision.targetDetection.TargetGroupDetector;
-import com.kylecorry.frc.vision.targetDetection.TargetGroupSpecs;
+import com.kylecorry.frc.vision.targetDetection.DoubleTargetDetector;
 
-public class SingleSwitchDetector extends TargetGroupDetector {
+public class SingleSwitchDetector extends DoubleTargetDetector {
     public SingleSwitchDetector(SingleIndividualSwitchDetector targetDetector) {
         super(targetDetector, new SingleSwitchTarget());
     }

@@ -34,11 +34,11 @@ public class TargetDetectorTest {
         Imgproc.rectangle(image, new Point(1, 1), new Point(2, 2), Scalar.all(255));
         Imgproc.rectangle(image, new Point(10, 10), new Point(30, 30), Scalar.all(255));
 
-        List<Target> targets = targetDetector.detect(image);
+        List<SingleTarget> targets = targetDetector.detect(image);
 
         assertEquals(1, targets.size());
 
-        Target target = targets.get(0);
+        SingleTarget target = targets.get(0);
 
         assertEquals(new com.kylecorry.geometry.Point(20, 20, 0), target.getCenterOfMass());
 
