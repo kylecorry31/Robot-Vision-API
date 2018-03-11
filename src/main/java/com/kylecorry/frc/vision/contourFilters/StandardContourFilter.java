@@ -31,6 +31,38 @@ public class StandardContourFilter implements ContourFilter {
         this.imageArea = imageArea;
     }
 
+    public Range getArea() {
+        return area;
+    }
+
+    public void setArea(Range area) {
+        this.area = area;
+    }
+
+    public Range getFullness() {
+        return fullness;
+    }
+
+    public void setFullness(Range fullness) {
+        this.fullness = fullness;
+    }
+
+    public Range getAspectRatio() {
+        return aspectRatio;
+    }
+
+    public void setAspectRatio(Range aspectRatio) {
+        this.aspectRatio = aspectRatio;
+    }
+
+    public double getImageArea() {
+        return imageArea;
+    }
+
+    public void setImageArea(double imageArea) {
+        this.imageArea = imageArea;
+    }
+
     @Override
     public List<MatOfPoint> filterContours(List<MatOfPoint> contours) {
         List<MatOfPoint> output = new ArrayList<>();

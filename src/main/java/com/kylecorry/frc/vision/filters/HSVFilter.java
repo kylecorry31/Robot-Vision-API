@@ -24,6 +24,30 @@ public class HSVFilter implements TargetFilter {
         this.value = value;
     }
 
+    public Range getHue() {
+        return hue;
+    }
+
+    public void setHue(Range hue) {
+        this.hue = hue;
+    }
+
+    public Range getSaturation() {
+        return saturation;
+    }
+
+    public void setSaturation(Range saturation) {
+        this.saturation = saturation;
+    }
+
+    public Range getValue() {
+        return value;
+    }
+
+    public void setValue(Range value) {
+        this.value = value;
+    }
+
     @Override
     public Mat filter(Mat image) {
         Mat hsvImg = new Mat();

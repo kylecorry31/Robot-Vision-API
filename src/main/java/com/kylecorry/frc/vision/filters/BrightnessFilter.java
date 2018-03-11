@@ -25,8 +25,16 @@ public class BrightnessFilter implements TargetFilter {
      * @param minBrightness The min brightness 0 - 255 inclusive.
      * @param maxBrightness The max brightness 0 - 255 inclusive.
      */
-    public BrightnessFilter(int minBrightness, int maxBrightness) {
+    public BrightnessFilter(double minBrightness, double maxBrightness) {
         this.brightness = new Range(minBrightness, maxBrightness);
+    }
+
+    public Range getBrightness() {
+        return brightness;
+    }
+
+    public void setBrightness(Range brightness) {
+        this.brightness = brightness;
     }
 
     @Override
