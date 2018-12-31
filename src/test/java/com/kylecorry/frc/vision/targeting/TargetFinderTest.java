@@ -10,7 +10,7 @@ import com.kylecorry.frc.vision.filters.TargetFilter;
 import com.kylecorry.frc.vision.targetConverters.TargetGrouping;
 import com.kylecorry.frc.vision.testUtils.OpenCVManager;
 import com.kylecorry.frc.vision.testUtils.SystemProperties;
-import com.kylecorry.geometry.Range;
+import com.kylecorry.frc.vision.Range;
 import org.junit.Before;
 import org.junit.Test;
 import org.opencv.core.CvType;

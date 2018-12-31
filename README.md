@@ -3,11 +3,24 @@ The Robot Vision API allows FRC teams to specify some key parameters about the t
 
 
 ## Installation
-Download the jar file from the [releases page](https://github.com/kylecorry31/Robot-Vision-API/releases), along with it's dependency jar from the [Geometry API](https://github.com/kylecorry31/Geometry/releases) and add them to your project in a libs folder. Add the libs folder to your build.properties file like so, at the end of the file: 
+Download the jar file from the [releases page](https://github.com/kylecorry31/Robot-Vision-API/releases) add it to your project.
 
-    userLibs = libs
+### FRC 2019 (alpha - official support coming after kickoff)
+Move the jar to a libs folder in your project. In your `build.gradle` file, add the following line to the dependencies section:
+
+`compile fileTree(dir: 'libs', include: '*.jar')`
+
+Here is an example [build.gradle file](https://github.com/kylecorry31/FRC-Sample-Robot-2019/blob/master/build.gradle).
+
+
+### FRC 2018 and older
+Move the jar to a libs folder in your project. Add the libs folder to your `build.properties` file like so, at the end of the file:
+
+`userLibs = libs`
+
+Then add the jar to your build path in Eclipse.
     
-Then add both files to your buildpath.
+
 
 
 ## Usage

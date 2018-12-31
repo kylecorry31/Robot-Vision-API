@@ -3,7 +3,7 @@ package com.kylecorry.frc.vision.filters;
 import com.kylecorry.frc.vision.testUtils.OpenCVImageUtils;
 import com.kylecorry.frc.vision.testUtils.OpenCVManager;
 import com.kylecorry.frc.vision.testUtils.SystemProperties;
-import com.kylecorry.geometry.Range;
+import com.kylecorry.frc.vision.Range;
 import org.junit.Before;
 import org.junit.Test;
 import org.opencv.core.CvType;

@@ -2,7 +2,7 @@ package com.kylecorry.frc.vision.contourFilters;
 
 import com.kylecorry.frc.vision.contourFinders.ContourFinder;
 import com.kylecorry.frc.vision.contourFinders.StandardContourFinder;
-import com.kylecorry.geometry.Range;
+import com.kylecorry.frc.vision.Range;
 import org.junit.Test;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;

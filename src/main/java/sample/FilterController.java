@@ -10,7 +10,7 @@ import com.kylecorry.frc.vision.filters.TargetFilter;
 import com.kylecorry.frc.vision.targetConverters.TargetGrouping;
 import com.kylecorry.frc.vision.targeting.Target;
 import com.kylecorry.frc.vision.targeting.TargetFinder;
-import com.kylecorry.geometry.Range;
+import com.kylecorry.frc.vision.Range;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -85,9 +85,9 @@ public class FilterController implements IController, Initializable {
 
 
         if (detectContours) {
-            ContourFilter contourFilter = new StandardContourFilter(new com.kylecorry.geometry.Range(areaMin.getValue(), areaMax.getValue()),
-                    new com.kylecorry.geometry.Range(fullMin.getValue(), fullMax.getValue()),
-                    new com.kylecorry.geometry.Range(aspectMin.getValue(), aspectMax.getValue()), image.size().area());
+            ContourFilter contourFilter = new StandardContourFilter(new Range(areaMin.getValue(), areaMax.getValue()),
+                    new Range(fullMin.getValue(), fullMax.getValue()),
+                    new Range(aspectMin.getValue(), aspectMax.getValue()), image.size().area());
 
             TargetFinder detector = new TargetFinder(new CameraSettings(false, new FOV(60, 60), new Resolution((int) image.size().width, (int) image.size().height)), filter, contourFilter, TargetGrouping.DOUBLE);
             List<Target> targets = detector.findTargets(image);

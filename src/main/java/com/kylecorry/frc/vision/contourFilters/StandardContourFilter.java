@@ -1,6 +1,6 @@
 package com.kylecorry.frc.vision.contourFilters;
 
-import com.kylecorry.geometry.Range;
+import com.kylecorry.frc.vision.Range;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.MatOfPoint2f;
 import org.opencv.core.Rect;

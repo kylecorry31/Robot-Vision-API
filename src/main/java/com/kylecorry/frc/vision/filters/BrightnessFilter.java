@@ -1,6 +1,6 @@
 package com.kylecorry.frc.vision.filters;
 
-import com.kylecorry.geometry.Range;
+import com.kylecorry.frc.vision.Range;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Scalar;
