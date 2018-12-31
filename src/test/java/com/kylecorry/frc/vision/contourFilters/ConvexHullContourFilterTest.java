@@ -2,6 +2,9 @@ package com.kylecorry.frc.vision.contourFilters;
 
 import com.kylecorry.frc.vision.contourFinders.ContourFinder;
 import com.kylecorry.frc.vision.contourFinders.StandardContourFinder;
+import com.kylecorry.frc.vision.testUtils.OpenCVManager;
+import com.kylecorry.frc.vision.testUtils.SystemProperties;
+import org.junit.Before;
 import org.junit.Test;
 import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
@@ -15,6 +18,11 @@ public class ConvexHullContourFilterTest {
 
     private ContourFilter contourFilter;
     private ContourFinder contourFinder;
+
+    @Before
+    public void setup(){
+        OpenCVManager.getInstance().load(new SystemProperties());
+    }
 
     @Test
     public void testFilterContours(){
