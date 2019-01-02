@@ -10,6 +10,6 @@ public class Version {
     }
 
     public int getBuildVersion(){
-        return 0;
+        return 1;
     }
 }
