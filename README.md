@@ -1,5 +1,5 @@
 # FRC Robot Vision API
-The Robot Vision API allows FRC teams to specify some key parameters about the target they are looking for, and receive the location of the target in a given image.
+The Robot Vision API allows FRC teams to specify some key parameters about the target they are looking for, and receive the location of the target in a given image. Developed through FRC Team 5112, The Gongoliers.
 
 
 ## Installation
