@@ -7,8 +7,8 @@ import java.io.File;
  */
 public class OpenCVManager {
 
-    private final static String LIB_NAME_LINUX = "libopencv_java340.so";
-    private final static String LIB_NAME_WIN_64 = "opencv_java340_64.dll";
+    private final static String LIB_NAME_LINUX = "libopencv_java345.so";
+    private final static String LIB_NAME_WIN_64 = "opencv_java340_64.dll"; // TODO: Update windows libs
     private final static String LIB_NAME_WIN_32 = "opencv_java340_32.dll";
 
     private boolean isLoaded = false;

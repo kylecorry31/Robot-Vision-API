@@ -1,5 +1,5 @@
 plugins {
-    id "java"
+    id "java-library"
     id "idea"
 }
 
@@ -15,7 +15,7 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile fileTree(dir: 'libs', include: '*.jar')
+    implementation fileTree(dir: 'libs', include: '*.jar')
 }
 
 jar {
@@ -23,5 +23,5 @@ jar {
 }
 
 wrapper {
-    gradleVersion = "4.9"
+    gradleVersion = "5.0"
 }
