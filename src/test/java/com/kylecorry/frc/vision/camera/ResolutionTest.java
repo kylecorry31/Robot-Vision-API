@@ -1,6 +1,9 @@
 package com.kylecorry.frc.vision.camera;
 
+import com.kylecorry.frc.vision.testUtils.OpenCVManager;
+import com.kylecorry.frc.vision.testUtils.SystemProperties;
 import org.junit.Test;
+import org.opencv.core.Mat;
 
 import static org.junit.Assert.*;
 
@@ -40,6 +43,16 @@ public class ResolutionTest {
         assertEquals(resolution, resolution.scaleBy(1));
         assertEquals(new Resolution(320, 240), resolution.scaleBy(0.5));
         assertEquals(new Resolution(1280, 960), resolution.scaleBy(2));
+    }
+
+    @Test
+    public void testFromMat(){
+        OpenCVManager.getInstance().load(new SystemProperties());
+        Mat mat = Mat.zeros(10, 20, 0);
+
+        assertEquals(new Resolution(20, 10), Resolution.fromMat(mat));
+
+        mat.release();
     }
 
 }
