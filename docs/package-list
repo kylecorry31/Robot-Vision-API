@@ -1,0 +1,8 @@
+com.kylecorry.frc.vision
+com.kylecorry.frc.vision.camera
+com.kylecorry.frc.vision.contourFilters
+com.kylecorry.frc.vision.contourFinders
+com.kylecorry.frc.vision.distance
+com.kylecorry.frc.vision.filters
+com.kylecorry.frc.vision.targetConverters
+com.kylecorry.frc.vision.targeting
