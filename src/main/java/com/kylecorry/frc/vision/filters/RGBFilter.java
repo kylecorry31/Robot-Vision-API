@@ -5,6 +5,9 @@ import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Scalar;
 
+/**
+ * An RGB filter.
+ */
 public class RGBFilter implements TargetFilter {
 
     private Range red;
@@ -23,26 +26,32 @@ public class RGBFilter implements TargetFilter {
         this.blue = blue;
     }
 
+    @Deprecated
     public Range getRed() {
         return red;
     }
 
+    @Deprecated
     public void setRed(Range red) {
         this.red = red;
     }
 
+    @Deprecated
     public Range getGreen() {
         return green;
     }
 
+    @Deprecated
     public void setGreen(Range green) {
         this.green = green;
     }
 
+    @Deprecated
     public Range getBlue() {
         return blue;
     }
 
+    @Deprecated
     public void setBlue(Range blue) {
         this.blue = blue;
     }

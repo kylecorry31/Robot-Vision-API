@@ -6,6 +6,9 @@ import org.opencv.core.Mat;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
+/**
+ * An HSV filter.
+ */
 public class HSVFilter implements TargetFilter {
 
     private Range hue;
@@ -24,26 +27,32 @@ public class HSVFilter implements TargetFilter {
         this.value = value;
     }
 
+    @Deprecated
     public Range getHue() {
         return hue;
     }
 
+    @Deprecated
     public void setHue(Range hue) {
         this.hue = hue;
     }
 
+    @Deprecated
     public Range getSaturation() {
         return saturation;
     }
 
+    @Deprecated
     public void setSaturation(Range saturation) {
         this.saturation = saturation;
     }
 
+    @Deprecated
     public Range getValue() {
         return value;
     }
 
+    @Deprecated
     public void setValue(Range value) {
         this.value = value;
     }

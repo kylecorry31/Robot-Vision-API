@@ -6,6 +6,9 @@ import org.opencv.core.Mat;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
+/**
+ * A brightness filter.
+ */
 public class BrightnessFilter implements TargetFilter {
 
     private Range brightness;
@@ -29,10 +32,12 @@ public class BrightnessFilter implements TargetFilter {
         this.brightness = new Range(minBrightness, maxBrightness);
     }
 
+    @Deprecated
     public Range getBrightness() {
         return brightness;
     }
 
+    @Deprecated
     public void setBrightness(Range brightness) {
         this.brightness = brightness;
     }
