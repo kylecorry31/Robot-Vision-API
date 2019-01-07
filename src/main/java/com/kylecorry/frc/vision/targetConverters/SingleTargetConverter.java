@@ -11,6 +11,9 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * A class for converting contours into targets. Does not group contours.
+ */
 public class SingleTargetConverter implements ContourToTargetConverter {
     @Override
     public List<Target> convertContours(List<MatOfPoint> contours, CameraSettings cameraSettings) {
@@ -27,15 +30,7 @@ public class SingleTargetConverter implements ContourToTargetConverter {
             targets.add(target);
         }
 
-        targets.sort((target, t1) -> {
-            if(target.getPercentArea() > t1.getPercentArea()){
-                return -1;
-            } else if(target.getPercentArea() == t1.getPercentArea()){
-                return 0;
-            } else {
-                return 1;
-            }
-        });
+        targets.sort((target, t1) -> Double.compare(t1.getPercentArea(), target.getPercentArea()));
 
         return targets;
     }

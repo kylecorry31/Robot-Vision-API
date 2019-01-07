@@ -11,6 +11,9 @@ import org.opencv.imgproc.Imgproc;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Creates a combined target from targets. Uses the biggest two targets.
+ */
 public class TripleTargetConverter implements ContourToTargetConverter {
     @Override
     public List<Target> convertContours(List<MatOfPoint> contours, CameraSettings cameraSettings) {
