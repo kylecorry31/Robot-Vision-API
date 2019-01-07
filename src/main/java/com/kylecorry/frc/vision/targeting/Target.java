@@ -42,6 +42,10 @@ public class Target {
         this.skew = skew;
     }
 
+    /**
+     * Get the skew of the target in degrees, from -90 to 90 where negative values are angled to the left.
+     * @return The skew in degrees.
+     */
     public double getSkew() {
         return skew;
     }

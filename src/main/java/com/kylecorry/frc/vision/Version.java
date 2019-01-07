@@ -6,10 +6,10 @@ public class Version {
     }
 
     public int getMinorVersion(){
-        return 0;
+        return 1;
     }
 
-    public int getBuildVersion(){
-        return 1;
+    public int getPatchVersion(){
+        return 0;
     }
 }
