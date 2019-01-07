@@ -6,6 +6,9 @@ import org.opencv.imgproc.Imgproc;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A convex hull contour filter.
+ */
 public class ConvexHullContourFilter implements ContourFilter {
 
     private double minArea;
@@ -17,7 +20,7 @@ public class ConvexHullContourFilter implements ContourFilter {
     private Range widthToHeightRatio;
 
     /**
-     * A conved hull contour filter.
+     * Create a convex hull contour filter.
      *
      * @param minArea            The minimum area of the contour in pixels.
      * @param minPerimeter       The minimum perimeter of the contour in pixels.

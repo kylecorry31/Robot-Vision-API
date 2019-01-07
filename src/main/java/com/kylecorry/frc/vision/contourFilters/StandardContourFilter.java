@@ -3,13 +3,15 @@ package com.kylecorry.frc.vision.contourFilters;
 import com.kylecorry.frc.vision.Range;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.MatOfPoint2f;
-import org.opencv.core.Rect;
 import org.opencv.core.RotatedRect;
 import org.opencv.imgproc.Imgproc;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A standard contour filter.
+ */
 public class StandardContourFilter implements ContourFilter {
 
     private Range area;
@@ -31,34 +33,42 @@ public class StandardContourFilter implements ContourFilter {
         this.imageArea = imageArea;
     }
 
+    @Deprecated
     public Range getArea() {
         return area;
     }
 
+    @Deprecated
     public void setArea(Range area) {
         this.area = area;
     }
 
+    @Deprecated
     public Range getFullness() {
         return fullness;
     }
 
+    @Deprecated
     public void setFullness(Range fullness) {
         this.fullness = fullness;
     }
 
+    @Deprecated
     public Range getAspectRatio() {
         return aspectRatio;
     }
 
+    @Deprecated
     public void setAspectRatio(Range aspectRatio) {
         this.aspectRatio = aspectRatio;
     }
 
+    @Deprecated
     public double getImageArea() {
         return imageArea;
     }
 
+    @Deprecated
     public void setImageArea(double imageArea) {
         this.imageArea = imageArea;
     }
