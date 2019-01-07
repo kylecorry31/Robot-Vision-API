@@ -37,6 +37,9 @@ class RectToTargetHelper {
 
         double percentArea = boundary.size.area() / imageArea * 100.0;
         double skew = boundary.angle;
+        if (boundary.size.width < boundary.size.height){
+            skew = 90 + boundary.angle;
+        }
 
 
         return new Target(horizontalAngle, verticalAngle, percentArea, skew, boundary);

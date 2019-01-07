@@ -38,6 +38,10 @@ public class Target {
         return percentArea;
     }
 
+    public void setSkew(double skew){
+        this.skew = skew;
+    }
+
     public double getSkew() {
         return skew;
     }

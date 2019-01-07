@@ -10,7 +10,7 @@ Move the jar to a libs folder in your project. In your `build.gradle` file, add 
 
 `compile fileTree(dir: 'libs', include: '*.jar')`
 
-Here is an example [build.gradle file](https://github.com/kylecorry31/FRC-Sample-Robot-2019/blob/master/build.gradle).
+Here is an examples [build.gradle file](https://github.com/kylecorry31/FRC-Sample-Robot-2019/blob/master/build.gradle).
 
 
 ### FRC 2018 and older
