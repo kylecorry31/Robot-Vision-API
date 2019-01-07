@@ -12,6 +12,9 @@ import org.opencv.core.MatOfPoint;
 
 import java.util.List;
 
+/**
+ * A class to find targets.
+ */
 public class TargetFinder {
 
     private CameraSettings cameraSettings;
@@ -25,6 +28,13 @@ public class TargetFinder {
     private ContourToTargetConverter contourToTargetConverter;
 
 
+    /**
+     * Creates a target finder.
+     * @param cameraSettings The settings of the camera.
+     * @param thresholdFilter The target filter.
+     * @param contourFilter The contour filter which is applied to the target filtered image.
+     * @param grouping The way targets will be grouped.
+     */
     public TargetFinder(CameraSettings cameraSettings, TargetFilter thresholdFilter, ContourFilter contourFilter, TargetGrouping grouping) {
         this.cameraSettings = cameraSettings;
         this.thresholdFilter = thresholdFilter;
@@ -47,6 +57,11 @@ public class TargetFinder {
         }
     }
 
+    /**
+     * Find targets within an image.
+     * @param image The image to find targets in.
+     * @return The targets.
+     */
     public List<Target> findTargets(Mat image) {
         if(cameraSettings.isInverted()){
             Core.flip(image, image, -1);

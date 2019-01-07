@@ -4,6 +4,9 @@ import org.opencv.core.RotatedRect;
 
 import java.util.Objects;
 
+/**
+ * A representation of a vision target.
+ */
 public class Target {
 
     private double horizontalAngle, verticalAngle;
@@ -14,6 +17,14 @@ public class Target {
 
     private RotatedRect boundary;
 
+    /**
+     * Creates a target.
+     * @param horizontalAngle The horizontal angle from the center of the camera to the center of the target in degrees.
+     * @param verticalAngle The vertical angle from the center of the camera to the center of the target in degrees.
+     * @param percentArea The percent area of the target to the image's area [0, 100] in percentage.
+     * @param skew The skew of the target (rotation angle) in degrees [-90, 90].
+     * @param boundary The bounding rotated rectangle of the target.
+     */
     public Target(double horizontalAngle, double verticalAngle, double percentArea, double skew, RotatedRect boundary) {
         this.horizontalAngle = horizontalAngle;
         this.verticalAngle = verticalAngle;
@@ -22,24 +33,36 @@ public class Target {
         this.boundary = boundary;
     }
 
+    /**
+     * Get the bounding box of the target.
+     * @return The bounding box.
+     */
     public RotatedRect getBoundary() {
         return boundary;
     }
 
+    /**
+     * Get the horizontal angle from the center of the camera to the center of the target in degrees.
+     * @return The horizontal angle.
+     */
     public double getHorizontalAngle() {
         return horizontalAngle;
     }
 
+    /**
+     * Get the vertical angle from the center of the camera to the center of the target in degrees.
+     * @return The vertical angle.
+     */
     public double getVerticalAngle() {
         return verticalAngle;
     }
 
+    /**
+     * Get the percent area of the target compared to the image in percentage.
+     * @return The percent area.
+     */
     public double getPercentArea() {
         return percentArea;
-    }
-
-    public void setSkew(double skew){
-        this.skew = skew;
     }
 
     /**
@@ -64,7 +87,6 @@ public class Target {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(horizontalAngle, verticalAngle, percentArea, skew, boundary);
     }
 
