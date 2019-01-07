@@ -6,6 +6,9 @@ import org.opencv.imgproc.Imgproc;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A standard contour finder.
+ */
 public class StandardContourFinder implements ContourFinder {
 
     @Override
