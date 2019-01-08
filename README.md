@@ -16,7 +16,7 @@ repositories {
 
 dependencies {
     ...
-    compile 'com.github.kylecorry31:Robot-Vision-API:v1.1.0'
+    compile 'com.github.kylecorry31:Robot-Vision-API:v1.1.1'
 }
 ```
 
@@ -97,6 +97,9 @@ private boolean isRightTarget(Target target){
 }
 
 ```
+
+### Documentation
+You can find documentation on [this website](https://kylecorry31.github.io/Robot-Vision-API).
 
 ## Contributing
 Please fork this repo and submit a pull request to contribute. I will review all changes and respond if they are accepted or rejected (as well as reasons, so it will be accepted).
