@@ -88,7 +88,7 @@ public class StandardContourFilter implements ContourFilter {
                 continue;
             }
 
-            final double targetAspect = boundingRect.size.width / boundingRect.size.height;
+            final double targetAspect = boundingRect.boundingRect().width / (double) boundingRect.boundingRect().height;
 
             if (!aspectRatio.inRangeInclusive(targetAspect)) {
                 continue;

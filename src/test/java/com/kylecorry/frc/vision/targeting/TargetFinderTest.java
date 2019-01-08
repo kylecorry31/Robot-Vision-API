@@ -31,7 +31,7 @@ public class TargetFinderTest {
     public void setUp() throws Exception {
         OpenCVManager.getInstance().load(new SystemProperties());
         TargetFilter filter = new BrightnessFilter(200, 255);
-        ContourFilter contourFilter = new StandardContourFilter(new Range(0.03, 100), new Range(0, 100), new Range(0, 100), 640 * 480);
+        ContourFilter contourFilter = new StandardContourFilter(new Range(0.03, 100), new Range(0, 100), new Range(0, 1), 640 * 480);
         CameraSettings cameraSettings = new CameraSettings(false, new FOV(60, 60), new Resolution(640, 480));
 
         targetFinder = new TargetFinder(cameraSettings, filter, contourFilter, TargetGrouping.SINGLE);
@@ -43,7 +43,7 @@ public class TargetFinderTest {
 
         Mat image = Mat.zeros(640, 480, CvType.CV_8UC3);
         Imgproc.rectangle(image, new Point(1, 1), new Point(2, 2), Scalar.all(255));
-        Imgproc.rectangle(image, new Point(40, 245), new Point(50, 255), Scalar.all(255));
+        Imgproc.rectangle(image, new Point(40, 240), new Point(50, 260), Scalar.all(255));
 
         List<Target> targets = targetFinder.findTargets(image);
 
@@ -51,11 +51,12 @@ public class TargetFinderTest {
 
         assertEquals(-26.3472946, targets.get(0).getHorizontalAngle(), 0.15);
 
-        assertEquals((10 * 10.0) / (640 * 480) * 100, targets.get(0).getPercentArea(), 0.005);
+        assertEquals((10 * 20.0) / (640 * 480) * 100, targets.get(0).getPercentArea(), 0.005);
 
         assertEquals(-90.0, targets.get(0).getSkew(), 0.01);
 
         assertEquals(-1.4469, targets.get(0).getVerticalAngle(), 0.15);
+
 
         image.release();
 

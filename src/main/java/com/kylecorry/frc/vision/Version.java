@@ -25,6 +25,6 @@ public class Version {
      * @return The patch version.
      */
     public int getPatchVersion(){
-        return 1;
+        return 2;
     }
 }
